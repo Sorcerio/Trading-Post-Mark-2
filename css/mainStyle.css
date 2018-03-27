@@ -1,0 +1,109 @@
+/*
+    Colors:
+    Black = #333
+    White = whitesmoke
+    Accent = #890000
+*/
+
+/* General */
+* {
+	font-family: Calibri; 
+}
+
+body {
+    margin: 0px;
+    color: whitesmoke;
+    background-color: #333;
+}
+
+/* Toolbar */
+.topNav {
+    background-color: whitesmoke;
+    overflow: hidden;
+}
+
+.topNav a {
+    float: left;
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topNav a:hover {
+    background-color: #333;
+    color: whitesmoke;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+a.active {
+    background-color: #333;
+    color: whitesmoke;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.topNav .icon {
+    display: none;
+    padding-bottom: 11.5px;
+}
+
+@media screen and (max-width: 600px) {
+    .topNav a:not(:first-child) {
+        display: none;
+        border-radius: 0px;
+    }
+
+    .topNav a.icon {
+        float: right;
+        display: block;
+        border-radius: 0px;
+    }
+
+    .topNav a.icon:hover {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .topNav .active {
+        background-color: #333;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .topNav.responsive {
+        position: relative;
+        border-radius: 0px;
+    }
+
+    .topNav.responsive a:hover {
+        border-radius: 0px;
+    }
+
+    .topNav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: whitesmoke;
+        background-color: #333;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .topNav.responsive a.icon:hover {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .topNav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}

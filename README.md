@@ -1,3 +1,3 @@
 # Trading Post, Mark 2
-## UML Map
-Coming soon
+### UML Map
+[UML is found here](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=SiteStructure.xml#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fmaximombro%2FTrading-Post-Mark-2%2Fmaster%2FSiteStructure.xml)

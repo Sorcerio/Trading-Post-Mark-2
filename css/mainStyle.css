@@ -5,6 +5,7 @@
     Accent = #890000
 */
 
+/* Universal ------------------------------------------------------------------- */
 /* General */
 * {
 	font-family: Calibri; 
@@ -14,6 +15,11 @@ body {
     margin: 0px;
     color: whitesmoke;
     background-color: #333;
+}
+
+body > div#mainContent {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /* Toolbar */
@@ -107,3 +113,11 @@ a.active {
         text-align: left;
     }
 }
+
+/* Footer */
+footer {
+    float: right;
+    padding-right: 10px;
+}
+
+/* Pages ----------------------------------------------------------------------- */

@@ -21,3 +21,5 @@
 		<a href="#about">About</a>
 		<a href="javascript:void(0);" class="icon" onclick="setResponsiveNav()">&#9776;</a>
 	</nav>
+
+	<div id="mainContent">

@@ -1,0 +1,1 @@
+// Default Script included on every page

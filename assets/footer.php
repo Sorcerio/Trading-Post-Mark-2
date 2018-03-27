@@ -1,5 +1,3 @@
 </body>
-<script>
-    // Default Script
-</script>
+<!-- <script src="actions/defaultJS.js"></script> -->
 </html>

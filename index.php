@@ -6,15 +6,24 @@
 
 <!-- Top 5 Items -->
 <div class="flexContainer" id="top5Container">
-	<div>
-		<div class="leftPanel">
-			<img src="LISTING_ADDRESS" alt="LISTING_TITLE Image 1" onerror="this.src = 'images/noImage.png';">
-		</div>
-		<div class="rightPanel">
-			<h2>LISTING_TITLE</h2>
-			<p>Phasellus non orci non sapien imperdiet accumsan ac nec libero. Aliquam elementum metus non hendrerit aliquet. Maecenas imperdiet ligula in gravida suscipit.</p>
-		</div>
-	</div>
+	<?php
+		// Load the 5 most recent listings
+		// Set number
+		$loadNum = 5;
+
+		// Retrieve data
+
+		// Print Cards
+		print '<a href="listing.php?id=LISTING_ID">';
+		print '<div class="leftPanel">';
+		print '<img src="LISTING_ADDRESS" alt="LISTING_TITLE Image 1" onerror="this.src = \'images/noImage.png\';">';
+		print '</div>';
+		print '<div class="rightPanel">';
+		print '<h2>LISTING_TITLE</h2>';
+		print '<p>LISTING_DESCRIPTION</p>';
+		print '</div>';
+		print '</a>';
+	?>
 </div>
 
 <!-- Footer -->

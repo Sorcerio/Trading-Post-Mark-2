@@ -149,6 +149,7 @@ footer {
     text-align: center;
     font-size: 100px;
     margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 600px) {
@@ -162,6 +163,7 @@ footer {
     border-radius: 10px;
     display: inline-flex;
     height: fit-content;
+    min-width: 230px;
     width: 45%;
     height: 200px;
     padding: 4px;
@@ -174,6 +176,7 @@ footer {
 
 #index #top5Container > div > .leftPanel img {
     height: 100%;
+    width: 13em;
     border-radius: 10px;
 }
 
@@ -182,7 +185,12 @@ footer {
     float: right;
 }
 
-@media screen and (max-width: 600px) {
+#index #top5Container > div > .rightPanel * {
+     margin-top: 0px;
+     margin-bottom: 0px;
+}
+
+@media screen and (max-width: 900px) {
     #index #top5Container > div {
         display: block;
         height: fit-content;
@@ -199,5 +207,9 @@ footer {
 
     #index #top5Container > div > .rightPanel {
         float: none;
+    }
+
+    #index #top5Container > div > .rightPanel * {
+        word-break: break-all;
     }
 }

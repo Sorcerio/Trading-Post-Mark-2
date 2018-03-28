@@ -5,6 +5,7 @@
 <h1>Welcome to the Trading Hub</h1>
 
 <!-- Top 5 Items -->
+<h2>Recent Additions</h2>
 <div class="flexContainer" id="top5Container">
 	<?php
 		// Load the 5 most recent listings
@@ -13,7 +14,7 @@
 
 		// Retrieve data
 		include ("actions/getMostRecentListings.php");
-		print_r($data);
+		// print_r($data);
 
 		// Print Cards
 		foreach($data as $listing) {

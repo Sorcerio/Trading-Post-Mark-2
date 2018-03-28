@@ -87,6 +87,10 @@ a.active {
         border-radius: 0px;
     }
 
+    .topNav.responsive a {
+        border-radius: 0px;
+    }
+
     .topNav.responsive a:hover {
         border-radius: 0px;
     }

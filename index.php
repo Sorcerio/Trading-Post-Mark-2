@@ -12,7 +12,8 @@
 		$loadNum = 5;
 
 		// Retrieve data
-		//...
+		include ("actions/getMostRecentListings.php");
+		print_r($data);
 
 		// Print Cards
 		print '<a href="listing.php?id=LISTING_ID">';

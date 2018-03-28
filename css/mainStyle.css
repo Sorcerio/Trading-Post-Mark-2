@@ -17,6 +17,10 @@
 	font-family: Calibri; 
 }
 
+table.xdebug-error {
+    color: black;
+}
+
 body {
     margin: 0px;
     color: whitesmoke;

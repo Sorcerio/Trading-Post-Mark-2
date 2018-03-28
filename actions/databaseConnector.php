@@ -2,37 +2,43 @@
 // Does Querys and returns the JSON
 class databaseConnector {
 
-    private $server = "localhost";  // Defaults for the server. It's public so it doesn't really matter.
-    private $username = "supremeSnatcher";
-    private $password = "snatch";
-    private $database = "brody_mc_media";
+    private $server = "localhost";  // Defaults for the server. This code is public, so it's *highly* recommended you change these.
+    private $username = "tradingPostUser";
+    private $password = "tradingPostUser";
+    private $database = "trading_post";
     private $connection;
 
-    public function databaseConnector(){
+    public function databaseConnector() {
 
-        $this->connection =  new mysqli( $this->server, $this->username, $this->password, $this->database );
+        $this->connection = new mysqli($this->server, $this->username, $this->password, $this->database);
 
         if($this->connection->connect_errno) {
-            echo "Failed to connect to MySQL: " . $this->connection->connect_errno;
+            echo "Failed to connect to MySQL: ".$this->connection->connect_errno;
             $this->_isConnected = false;
         } else {
             $this->_isConnected = true;
 			$this->connection->set_charset('utf8');
-            $this->query("SET time_zone = 'America/New_York'" );
+            $this->query("SET time_zone = 'America/New_York'");
         }
     }
 
     private function query($query) {
-        $rows = array();
-        if(is_object($result = $this->connection->query($query))){
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
+        try {
+            $rows = array();
+
+            if(is_object($result = $this->connection->query($query))) {
+                while ($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+
+                $result->free();
             }
 
-            $result->free();
+            return $rows;
+        } catch (MyException $e) {
+            // If the object query fails
+            return NULL;
         }
-
-        return $rows;
     }
 
     // ------------------------- Start Fetchable Functions ----------------------------------------------
@@ -57,10 +63,16 @@ class databaseConnector {
     //     return $this->query($query);
     // }
 
-    public function getAllStoreItemTables($modifier) {
+    public function getMostRecentListings() {
         $query = "
-            SOME TEXT
+            SELECT * FROM trading_post.listings
         ";
+
+        // $query = "
+        //     SELECT * FROM trading_post.listings
+        //     ORDER BY date DESC
+        //     LIMIT 0,5;
+        // ";
 
         return $this->query($query);
     }

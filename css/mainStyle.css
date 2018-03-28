@@ -6,6 +6,12 @@
 */
 
 /* Universal ------------------------------------------------------------------- */
+/* Fonts */
+@font-face {
+	font-family: "Quarca";
+	src: url("../assets/QuarcaCondBold.otf") format("opentype");
+}
+
 /* General */
 * {
 	font-family: Calibri; 
@@ -20,6 +26,16 @@ body {
 body > div#mainContent {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.flexContainer {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	text-align: center;
+	margin: auto;
+	justify-content: center;
 }
 
 /* Toolbar */
@@ -123,6 +139,65 @@ a.active {
 footer {
     float: right;
     padding-right: 10px;
+    padding-top: 10px;
 }
 
 /* Pages ----------------------------------------------------------------------- */
+/* Index */
+#index > #mainContent > h1 {
+    font-family: Quarca, Calibri;
+    text-align: center;
+    font-size: 100px;
+    margin-top: 0px;
+}
+
+@media screen and (max-width: 600px) {
+    #index > #mainContent > h1 {
+        font-size: 300%;
+    }
+}
+
+#index #top5Container > div {
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    display: inline-flex;
+    height: fit-content;
+    width: 45%;
+    height: 200px;
+    padding: 4px;
+    margin: 4px;
+}
+
+#index #top5Container > div > .leftPanel {
+    float: left;
+}
+
+#index #top5Container > div > .leftPanel img {
+    height: 100%;
+    border-radius: 10px;
+}
+
+#index #top5Container > div > .rightPanel {
+    text-align: left;
+    float: right;
+}
+
+@media screen and (max-width: 600px) {
+    #index #top5Container > div {
+        display: block;
+        height: fit-content;
+    }
+
+    #index #top5Container > div > .leftPanel {
+        float: none;
+    }
+
+    #index #top5Container > div > .leftPanel img {
+        height: 10em;
+    }
+
+
+    #index #top5Container > div > .rightPanel {
+        float: none;
+    }
+}

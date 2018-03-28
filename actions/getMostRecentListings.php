@@ -13,17 +13,17 @@
             // Connects to the database connector to get it's methods
             parent::databaseConnector();
 
-            // Prints the json to the HTML
-            print(json_encode($this->getMostRecentListings()));
+            // // Prints the json to the HTML
+            // print(json_encode($this->getMostRecentListings()));
 
             // Returns the json to use with PHP data
-            return json_encode($this->getMostRecentListings());
+            return $this->getMostRecentListings();
         }
     }
 
-    // Creates the initial node which prints the php data to HTML
+    // Creates the initial node which prints the php data to HTML if enabled
     $node = new getMostRecentListingsApi();
     
-    // Saves json to a PHP accessable variable
+    // Saves json to a PHP accessable variable if enabled
     $data = $node->getMostRecentListingsApi();
 ?>

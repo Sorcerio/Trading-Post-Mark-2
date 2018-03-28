@@ -8,23 +8,25 @@
 <div class="flexContainer" id="top5Container">
 	<?php
 		// Load the 5 most recent listings
-		// Set number
-		$loadNum = 5;
+		// // Set number
+		// $loadNum = 5;
 
 		// Retrieve data
 		include ("actions/getMostRecentListings.php");
 		print_r($data);
 
 		// Print Cards
-		print '<a href="listing.php?id=LISTING_ID">';
-		print '<div class="leftPanel">';
-		print '<img src="LISTING_ADDRESS" alt="LISTING_TITLE Image 1" onerror="this.src = \'images/noImage.png\';">';
-		print '</div>';
-		print '<div class="rightPanel">';
-		print '<h2>LISTING_TITLE</h2>';
-		print '<p>LISTING_DESCRIPTION</p>';
-		print '</div>';
-		print '</a>';
+		foreach($data as $listing) {
+			print '<a href="listing.php?id='.$listing['listingId'].'">';
+			print '<div class="leftPanel">';
+			print '<img src="LISTING_ADDRESS" alt="'.$listing['title'].' Image 1" onerror="this.src = \'images/noImage.png\';">';
+			print '</div>';
+			print '<div class="rightPanel">';
+			print '<h2>'.$listing['title'].'</h2>';
+			print '<p>'.$listing['description'].'</p>';
+			print '</div>';
+			print '</a>';
+		}
 	?>
 </div>
 

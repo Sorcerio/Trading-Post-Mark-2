@@ -42,6 +42,10 @@ body > div#mainContent {
 	justify-content: center;
 }
 
+h1, h2, h3 {
+    font-family: "Quarca";
+}
+
 /* Toolbar */
 .topNav {
     background-color: whitesmoke;
@@ -144,6 +148,7 @@ footer {
     float: right;
     padding-right: 10px;
     padding-top: 10px;
+    margin-bottom: 10px;
 }
 
 footer > .footerButton {
@@ -252,3 +257,5 @@ footer > .footerButton:hover {
         word-break: normal;
     }
 }
+
+/* Submit */

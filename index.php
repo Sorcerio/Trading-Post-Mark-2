@@ -12,6 +12,7 @@
 		$loadNum = 5;
 
 		// Retrieve data
+		//...
 
 		// Print Cards
 		print '<a href="listing.php?id=LISTING_ID">';

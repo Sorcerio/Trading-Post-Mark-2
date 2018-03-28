@@ -146,6 +146,20 @@ footer {
     padding-top: 10px;
 }
 
+footer > .footerButton {
+    background-color: #333;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    padding: 4px;
+    text-decoration: none;
+}
+
+footer > .footerButton:hover {
+    background-color: whitesmoke;
+    color: #333;
+}
+
 /* Pages ----------------------------------------------------------------------- */
 /* Index */
 #index > #mainContent > h1 {
@@ -160,6 +174,10 @@ footer {
     #index > #mainContent > h1 {
         font-size: 300%;
     }
+}
+
+#index > #mainContent > h2 {
+    margin-bottom: 0px;
 }
 
 #index #top5Container > a {
@@ -228,5 +246,9 @@ footer {
 
     #index #top5Container > a > .rightPanel * {
         word-break: break-all;
+    }
+
+    #index #top5Container > a > .rightPanel > p {
+        word-break: normal;
     }
 }

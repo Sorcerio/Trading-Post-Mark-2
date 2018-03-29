@@ -68,22 +68,22 @@
         $dataRecord[] = $terms;
 
         // Validate user input
-        if($title == $errorText) {
+        if($title == "") {
             $errorMsg[] = "Please enter a title.";
             $title_Error = true;
         }
 
-        if($desc == $errorText) {
+        if($desc == "") {
             $errorMsg[] = "Please enter a description.";
             $desc_Error = true;
         }
 
-        if($quantity == $errorText) {
+        if($quantity == "") {
             $errorMsg[] = "Please enter a quantity.";
             $quantity_Error = true;
         }
 
-        if($price == $errorText) {
+        if($price == "") {
             $errorMsg[] = "Please enter a price.";
             $price_Error = true;
         }
@@ -101,8 +101,6 @@
                 print_r($dataRecord);
                 print "</p>";
             }
-
-            //...
         }
     }
 
@@ -119,6 +117,7 @@
         if($errorMsg) {
             // Print top of div
             print '<div class="forumErrors">';
+            print '<h3>Forum Validation Failed</h3>';
             
             // Print all errors
             foreach($errorMsg as $e) {
@@ -132,7 +131,7 @@
     // 'ELSE' closed below to encompass form HTML
 ?>
 
-<form action="actions/createListing.php" method="post" enctype="multipart/form-data">
+<form action="<?php print $phpSelf; ?>" method="post" enctype="multipart/form-data">
     <div>
         <div>
             <h3 class="instruction">Title of your Listing:</h3>

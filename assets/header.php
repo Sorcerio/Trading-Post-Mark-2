@@ -1,6 +1,16 @@
 <?php
+	// Create Path Parts
 	$phpSelf = htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8");
 	$path_parts = pathinfo($phpSelf);
+
+	// Set debug mode
+	$debug = false;
+	if(isset($_GET["debug"])) {
+		$debug = true;
+	}
+
+	// Include Security
+	require_once("assets/security.php");
 ?>
 
 <!DOCTYPE html>

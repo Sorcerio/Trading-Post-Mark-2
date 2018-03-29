@@ -81,10 +81,16 @@
         if($quantity == "") {
             $errorMsg[] = "Please enter a quantity.";
             $quantity_Error = true;
+        } else if($quantity <= 0) {
+            $errorMsg[] = "Your quantity must be at least 1.";
+            $quantity_Error = true;
         }
 
         if($price == "") {
             $errorMsg[] = "Please enter a price.";
+            $price_Error = true;
+        } else if($price < 0) {
+            $errorMsg[] = "Your price cannot be negative.";
             $price_Error = true;
         }
 
@@ -107,7 +113,7 @@
     if(isset($_POST['submit']) and empty($errorMsg)) {
         // Display submit header
         print '<h1 class="jumboHeader">Thanks for your Listing</h1>';
-        print '<p class="jumboSubtitle">Your listing of \''.$title.'\' has been published <a href="LISTING_LINK" id="productPageLink">here</a>.</p>';
+        print '<p class="jumboSubtitle">Your listing of \''.$title.'\' has been published <a href="listing.php?id=LISTING_ID" id="productPageLink">here</a>.</p>';
 
     } else {
         // Display standard header
@@ -148,13 +154,13 @@
         <div>
             <h3 class="instruction">Quantity Avalible</h3>
             <p class="details">How many of this item do you have?</p>
-            <input type="number" name="quantity" placeholder="Quantity" <?php if($debug){print 'value="100"';} ?>>
+            <input type="number" name="quantity" placeholder="Quantity" min="1" <?php if($debug){print 'value="100"';} ?>>
         </div>
 
         <div>
             <h3 class="instruction">Price of Listing</h3>
-            <p class="details">How much is this listing worth?</p>
-            <input type="number" name="price" placeholder="Price" <?php if($debug){print 'value="100"';} ?>>
+            <p class="details">How much is this listing worth? Enter '0.00' to mark it as free.</p>
+            <input type="number" name="price" placeholder="Price" min="0" <?php if($debug){print 'value="100"';} ?>>
         </div>
 
         <div>

@@ -9,6 +9,11 @@
 		$debug = true;
 	}
 
+	// Path Setup
+	$domain = "//";
+	$server = htmlentities($_SERVER["SERVER_NAME"], ENT_QUOTES, 'UTF-8');
+	$domain .= $server;
+
 	// Include Security
 	require_once("assets/security.php");
 ?>
@@ -34,9 +39,6 @@
 		<a href="submit.php" <?php if($path_parts['filename'] == "submit"){print 'class="active"';} ?>>Submit</a>
 		<a href="browse.php" <?php if($path_parts['filename'] == "browse"){print 'class="active"';} ?>>Browse</a>
 		<a href="account.php" <?php if($path_parts['filename'] == "account"){print 'class="active"';} ?>>Account</a>
-
-		<?php print $path_parts; ?>
-
 		<a href="javascript:void(0);" class="icon" onclick="setResponsiveNav()">&#9776;</a>
 	</nav>
 

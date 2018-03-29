@@ -4,7 +4,7 @@
 <!-- Content Start -->
 <?php
     // Include the validation functions
-    include "lib/validationFunctions.php";
+    include "assets/validationFunctions.php";
 
     // Security
     $thisURL = $domain.$phpSelf;

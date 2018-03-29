@@ -1,33 +1,32 @@
 <?php
-// Gets the provided number of most recent listings
+    // Class Function: Gets the 5 most recent listings
+
     // Includes the database connector if nothing else has
     include_once 'databaseConnector.php';
 
     // Builds the class extending the database connector
     class getMostRecentListingsApi extends databaseConnector {
 
-        // Creates a function that can be called by anything that includes this file
-        // and returns a json encoded stream from the query
+        // Gets top 5 most recent listings for use with PHP
         public function getMostRecentListingsPHP() {
-            // Connects to the database connector to get it's methods
+            // Connects to the database connector to retrieve query data
             parent::databaseConnector();
 
-            // Returns the json to use with PHP data
+            // Return an array to use with further PHP programming
             return $this->getMostRecentListings();
         }
 
+        // Gets top 5 most recent listings for use with HTML/JS/AJAX
         public function getMostRecentListingsJS() {
-            // Connects to the database connector to get it's methods
+            // Connects to the database connector to retrieve query data
             parent::databaseConnector();
 
-            // Prints the json to the HTML
+            // Prints a json to use display in HTML or to use with JS and/or AJAX
             print(json_encode($this->getMostRecentListings()));
         }
     }
 
-    // Creates the initial object which prints the php data to HTML if enabled
+    // Creates the initial object
+    // Use '$node->FUNCTION' to use this object and call it's methods
     $node = new getMostRecentListingsApi();
-    
-    // // Saves json to a PHP accessable variable if enabled
-    // $data = $node->getMostRecentListingsPHP();
 ?>

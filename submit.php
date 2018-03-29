@@ -107,7 +107,7 @@
     if(isset($_POST['submit']) and empty($errorMsg)) {
         // Display submit header
         print '<h1 class="jumboHeader">Thanks for your Listing</h1>';
-        print '<p>Your listing of \''.$title.'\' has been published <a href="LISTING_LINK">here</a>.</p>';
+        print '<p class="jumboSubtitle">Your listing of \''.$title.'\' has been published <a href="LISTING_LINK" id="productPageLink">here</a>.</p>';
 
     } else {
         // Display standard header
@@ -176,7 +176,7 @@
 
         <div>
             <h3 class="instruction">Agree to Trading Hub Terms</h3>
-            <p class="details">Terms can be found here: <a href="disclaimer.php#termsOfListing">Terms of Listing</a>.</p>
+            <p class="details">Terms can be found here: <a href="disclaimer.php#termsOfListing" target="_blank">Terms of Listing</a>.</p>
             <p class="checkboxWrapper"><input type="checkbox" name="terms" value="agreed" <?php if($debug){print 'checked';} ?>>Yes, I agree with the terms.</p>
         </div>
     </div>

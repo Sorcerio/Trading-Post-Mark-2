@@ -10,7 +10,7 @@
     $thisURL = $domain.$phpSelf;
 
     // Forum Variables
-    $errorText = "Forum_Failed";
+    $errorText = "";
     $title = $errorText;
     $desc = $errorText;
     $quantity = $errorText;
@@ -47,8 +47,8 @@
         // Sanitize text inputs
         $title = htmlentities($_POST["title"], ENT_QUOTES, "UTF-8");
         $desc = htmlentities($_POST["description"], ENT_QUOTES, "UTF-8");
-        $quantity = htmlentities($_POST["description"], ENT_QUOTES, "UTF-8");
-        $price = htmlentities($_POST["description"], ENT_QUOTES, "UTF-8");
+        $quantity = htmlentities($_POST["quantity"], ENT_QUOTES, "UTF-8");
+        $price = htmlentities($_POST["price"], ENT_QUOTES, "UTF-8");
 
         // Sanitize check box inputs
         if(isset($_POST["barter"])) {
@@ -81,15 +81,15 @@
         if($quantity == "") {
             $errorMsg[] = "Please enter a quantity.";
             $quantity_Error = true;
-        } else if($quantity <= 0) {
-            $errorMsg[] = "Your quantity must be at least 1.";
+        } else if(intval($quantity) <= 0) {
+            $errorMsg[] = "Your quantity must be at least 1.".$quantity;
             $quantity_Error = true;
         }
 
         if($price == "") {
             $errorMsg[] = "Please enter a price.";
             $price_Error = true;
-        } else if($price < 0) {
+        } else if(intval($price) < 0) {
             $errorMsg[] = "Your price cannot be negative.";
             $price_Error = true;
         }
@@ -111,9 +111,19 @@
     }
 
     if(isset($_POST['submit']) and empty($errorMsg)) {
+        // Get Account ID
+        // TODO: GET ACCOUNT ID
+        $accId = 0;
+
+        // Import listing creator
+        include ("actions/createListing.php");
+
+        // Submit data to database
+        $listingId = $node->createNewListingPHP($title,$desc,$quantity,$price,$barter,$accId);
+
         // Display submit header
         print '<h1 class="jumboHeader">Thanks for your Listing</h1>';
-        print '<p class="jumboSubtitle">Your listing of \''.$title.'\' has been published <a href="listing.php?id=LISTING_ID" id="productPageLink">here</a>.</p>';
+        print '<p class="jumboSubtitle">Your listing of \''.$title.'\' has been published <a href="listing.php?id='.$listingId.'" id="productPageLink">here</a>.</p>';
 
     } else {
         // Display standard header
@@ -142,31 +152,31 @@
         <div>
             <h3 class="instruction">Title of your Listing:</h3>
             <p class="details">Something that quickly describes your listing.</p>
-            <input type="text" name="title" placeholder="Title" <?php if($debug){print 'value="DEBUG_MODE_TITLE"';} ?>>
+            <input type="text" name="title" placeholder="Title" <?php if($debug){print 'value="DEBUG_MODE_TITLE"';} print 'value='.$title; ?>>
         </div>
 
         <div>
             <h3 class="instruction">Description of your Listing</h3>
             <p class="details">A more descriptive blob of text about your listing with details like condition or size.</p>
-            <textarea name="description" placeholder="Description"><?php if($debug){print 'DEBUG_MODE_DESCRIPTION';} ?></textarea>
+            <textarea name="description" placeholder="Description"><?php if($debug){print 'DEBUG_MODE_DESCRIPTION';} print $desc; ?></textarea>
         </div>
 
         <div>
             <h3 class="instruction">Quantity Avalible</h3>
             <p class="details">How many of this item do you have?</p>
-            <input type="number" name="quantity" placeholder="Quantity" min="1" <?php if($debug){print 'value="100"';} ?>>
+            <input type="number" name="quantity" placeholder="Quantity" min="1" <?php if($debug){print 'value="100"';} print 'value='.$quantity; ?>>
         </div>
 
         <div>
             <h3 class="instruction">Price of Listing</h3>
             <p class="details">How much is this listing worth? Enter '0.00' to mark it as free.</p>
-            <input type="number" name="price" placeholder="Price" min="0" <?php if($debug){print 'value="100"';} ?>>
+            <input type="number" name="price" placeholder="Price" min="0" <?php if($debug){print 'value="100"';} print 'value='.$price; ?>>
         </div>
 
         <div>
             <h3 class="instruction">Barter Availability</h3>
             <p class="details">Are you willing to take alternative offers on price.</p>
-            <p class="checkboxWrapper"><input type="checkbox" name="barter" value="yes" <?php if($debug){print 'checked';} ?>>Yes, I will barter.</p>
+            <p class="checkboxWrapper"><input type="checkbox" name="barter" value="yes" <?php if($debug){print 'checked';} if($barter){print 'checked';} ?>>Yes, I will barter.</p>
         </div>
 
         <div>
@@ -183,7 +193,7 @@
         <div>
             <h3 class="instruction">Agree to Trading Hub Terms</h3>
             <p class="details">Terms can be found here: <a href="disclaimer.php#termsOfListing" target="_blank">Terms of Listing</a>.</p>
-            <p class="checkboxWrapper"><input type="checkbox" name="terms" value="agreed" <?php if($debug){print 'checked';} ?>>Yes, I agree with the terms.</p>
+            <p class="checkboxWrapper"><input type="checkbox" name="terms" value="agreed" <?php if($debug){print 'checked';} if($terms){print 'checked';} ?>>Yes, I agree with the terms.</p>
         </div>
     </div>
     

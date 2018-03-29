@@ -1,19 +1,22 @@
 <?php
-print "<h1>Triggered the form</h1><br>";
+    // Class Function: Creates a new listing with the applied information and returns the Listing Id
 
-// Check to see if data was submitted
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    print_r($_POST);
+    // Includes the database connector if nothing else has
+    include_once 'databaseConnector.php';
 
-    // Check to see if agreement was agreed
-    if($_POST['terms'] == "agreed") {
-        // Terms were agreed to
-        // Establish Variables
-        $title = $desc = $quantity = $price = $barter = "";
+    // Builds the class extending the database connector
+    class createListingApi extends databaseConnector {
 
-    } else {
-        // Terms were not agreed to
-        // Redirect to form
+        // Creates a new listing with supplied information
+        public function createNewListingPHP($title,$desc,$quantity,$price,$barter,$account) {
+            // Connects to the database connector to retrieve query data
+            parent::databaseConnector();
+
+            // Execute the submission query and return listing id
+            return $this->createNewListing($title,$desc,$quantity,$price,$barter,$account);
+        }
     }
-}
+
+    // Creates the initial object that methods can be called from
+    $node = new createListingApi();
 ?>

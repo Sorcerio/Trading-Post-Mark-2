@@ -97,5 +97,18 @@ class databaseConnector {
         // Request and return data from query
         return $this->query($query);
     }
+
+    public function createNewListing($title,$desc,$quantity,$price,$barter,$account) {
+        // Build query
+        $query = "
+            INSERT INTO trading_post.listings
+            VALUES (0,$account,".date('Y-m-d').",'$title','$desc',$quantity,$price,$barter,null);
+            USE trading_post;
+            SELECT LAST_INSERT_ID();
+        ";
+
+        // Request and return data from query
+        return $this->query($query);
+    }
 }
 ?>

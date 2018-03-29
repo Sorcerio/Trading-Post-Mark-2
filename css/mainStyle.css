@@ -145,9 +145,11 @@ a.active {
 
 /* Footer */
 footer {
-    float: right;
+    /* float: right; */
+    border-top: 1px solid whitesmoke;
     padding-right: 10px;
     padding-top: 10px;
+    margin-top: 35px;
     margin-bottom: 10px;
 }
 
@@ -158,6 +160,7 @@ footer > .footerButton {
     border-radius: 10px;
     padding: 4px;
     text-decoration: none;
+    margin: auto;
 }
 
 footer > .footerButton:hover {
@@ -259,3 +262,82 @@ footer > .footerButton:hover {
 }
 
 /* Submit */
+#submit > #mainContent > h1 {
+    text-align: center;
+}
+
+form > div > div {
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    width: 50%;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 4px;
+}
+
+form .instruction {
+    margin: 0px;
+}
+
+form .details {
+    margin: 0px;
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+form .details a {
+    color: whitesmoke;
+}
+
+form input {
+    width: 100%;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    background-color: whitesmoke;
+    color: #333;
+}
+
+form textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    background-color: whitesmoke;
+    color: #333;
+}
+
+form input[type="checkbox"] {
+    width: 12px;
+}
+
+form .checkboxWrapper {
+    margin: 0px;
+}
+
+form input[type="file"] {
+    background-color: #333;
+    color: whitesmoke;
+    border: none;
+    margin-top: 4px;
+    width: 100%;
+}
+
+form input[type="submit"] {
+    width: 50%;
+    display: block;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #333;
+    color: whitesmoke;
+}
+
+@media screen and (max-width: 750px) {
+    form > div > div {
+        width: 95%;
+    }
+}

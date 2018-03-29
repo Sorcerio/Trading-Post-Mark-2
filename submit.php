@@ -3,7 +3,7 @@
 
 <!-- Content Start -->
 <!-- listingId, accountId, date, title, description, quantity, price, barter, image -->
-<h1>Submit Listing to the Trading Hub</h1>
+<h1 class="jumboHeader">Submit Listing to the Trading Hub</h1>
 
 <form action="actions/createListing.php" method="post">
     <div>
@@ -50,7 +50,7 @@
 
         <div>
             <h3 class="instruction">Agree to Trading Hub Terms</h3>
-            <p class="details">Terms can be found here: <a href="#">Terms of Listing</a>.</p>
+            <p class="details">Terms can be found here: <a href="disclaimer.php#termsOfListing">Terms of Listing</a>.</p>
             <p class="checkboxWrapper"><input type="checkbox" name="barter" value="barter">Yes, I agree with the terms.</p>
         </div>
     </div>

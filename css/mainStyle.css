@@ -46,6 +46,20 @@ h1, h2, h3 {
     font-family: "Quarca";
 }
 
+.jumboHeader {
+    font-family: Quarca, Calibri;
+    text-align: center;
+    font-size: 100px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .jumboHeader {
+        font-size: 300%;
+    }
+}
+
 /* Toolbar */
 .topNav {
     background-color: whitesmoke;
@@ -169,21 +183,21 @@ footer > .footerButton:hover {
 }
 
 /* Pages ----------------------------------------------------------------------- */
+/* Disclaimer */
+#disclaimer > #mainContent .optionsTitle {
+    margin-bottom: 0px;
+}
+
+#disclaimer > #mainContent .options {
+    margin: 0px;
+}
+
+#disclaimer > #mainContent .options * {
+    margin: 0px;
+    color: whitesmoke;
+}
+
 /* Index */
-#index > #mainContent > h1 {
-    font-family: Quarca, Calibri;
-    text-align: center;
-    font-size: 100px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-}
-
-@media screen and (max-width: 600px) {
-    #index > #mainContent > h1 {
-        font-size: 300%;
-    }
-}
-
 #index > #mainContent > h2 {
     margin-bottom: 0px;
 }

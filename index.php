@@ -2,7 +2,7 @@
 <?php include ("assets/header.php"); ?>
 
 <!-- Content Start -->
-<h1>Welcome to the Trading Hub</h1>
+<h1 class="jumboHeader">Welcome to the Trading Hub</h1>
 
 <!-- Top 5 Items -->
 <h2>Recent Additions</h2>

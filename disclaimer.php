@@ -2,8 +2,14 @@
 <?php include ("assets/header.php"); ?>
 
 <!-- Content Start -->
-<h1>Trading Hub Disclaimer</h1>
+<h1 id="top" class="jumboHeader">Trading Hub Documents</h1>
+<h2 class="optionsTitle">Documents:</h2>
+<ul class="options">
+    <li><h3><a href="#disclaimer">Disclaimer</a></h3></li>
+    <li><h3><a href="#termsOfListing">Terms of Listing</a></h3></li>
+</ul>
 
+<h1 id="disclaimer">Disclaimer</h1>
 <!-- Dirty Text converted from .rtf using computer program -->
 <P ALIGN=CENTER STYLE="margin-bottom: 0.14in"><FONT FACE="Verdana, sans-serif"><B>Trading Post Disclaimer</B></FONT></P>
 <P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 0.5in; text-indent: -0.5in; margin-bottom: 0.11in; line-height: 107%">
@@ -280,6 +286,26 @@ details</B></FONT></FONT></P>
 <FONT FACE="Verdana, sans-serif"><FONT SIZE=2>11.1	This widget is
 owned and operated by private indiviguals who are not associated with and organization or its entities.</FONT></FONT></P>
 <!-- Dirty Text end -->
+
+<div class="options">
+    <h3><a href="#mainTopNav">Back to Top</a></h3>
+</div>
+
+<h1 id="termsOfListing">Terms of Listing</h1>
+<ul>
+    <li><p>You understand that information entered into a listing will be displayed publically on this site.</p></li>
+    <li><p>You understand that the email associated with your account will be sent to any prospective buyers for the purpose of connecting you and the buyer.</p></li>
+    <li><p>You understand all pictures are stored on our servers once they are uploaded.</p></li>
+    <li><p>You udnerstand all information is stored on our servers once it is uploaded.</p></li>
+    <li><p>We are not responsible for the legal nature of your listings.</p></li>
+    <li><p>We are not repsonsible for interactions between any potential buyers and yourself.</p></li>
+    <li><p>We do not guarentee any sales.</p></li>
+    <li><p>In short, we are not responsible for anything except for hosting your listing as an impartial party with no connection to the content, the actions of your or the buyer, and any potential interactions stemming from your listing.</p></li>
+</ul>
+
+<div class="options">
+    <h3><a href="#mainTopNav">Back to Top</a></h3>
+</div>
 
 <!-- Footer -->
 <?php include ("assets/footer.php"); ?>

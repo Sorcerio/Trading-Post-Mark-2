@@ -8,8 +8,8 @@ class databaseConnector {
     private $database = "trading_post";
     private $connection;
 
-    public function databaseConnector() {
-
+    // PHP 7 Compliant Constructor
+    public function __construct() {
         $this->connection = new mysqli($this->server, $this->username, $this->password, $this->database);
 
         if($this->connection->connect_errno) {
@@ -22,7 +22,15 @@ class databaseConnector {
         }
     }
 
+    // Constructor call for use by child classes
+    public function databaseConnector() {
+        // Call Constructor
+        self::__construct();
+    }
+
+    // Calls a Query to the MySQL Server connected to this object
     private function query($query) {
+        // Error catch
         try {
             $rows = array();
 
@@ -66,13 +74,9 @@ class databaseConnector {
     public function getMostRecentListings() {
         $query = "
             SELECT * FROM trading_post.listings
+            ORDER BY date DESC
+            LIMIT 0,5;
         ";
-
-        // $query = "
-        //     SELECT * FROM trading_post.listings
-        //     ORDER BY date DESC
-        //     LIMIT 0,5;
-        // ";
 
         return $this->query($query);
     }

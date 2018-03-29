@@ -9,12 +9,9 @@
 <div class="flexContainer" id="top5Container">
 	<?php
 		// Load the 5 most recent listings
-		// // Set number
-		// $loadNum = 5;
-
 		// Retrieve data
 		include ("actions/getMostRecentListings.php");
-		// print_r($data);
+		$data = $node->getMostRecentListingsPHP();
 
 		// Print Cards
 		foreach($data as $listing) {

@@ -99,16 +99,21 @@ class databaseConnector {
     }
 
     public function createNewListing($title,$desc,$quantity,$price,$barter,$account) {
+        // Pull date
+        $date = date('Y-m-d');
+
         // Build query
         $query = "
             INSERT INTO trading_post.listings
-            VALUES (0,$account,".date('Y-m-d').",'$title','$desc',$quantity,$price,$barter,null);
-            USE trading_post;
-            SELECT LAST_INSERT_ID();
+            VALUES (0,$account,$date,'$title','$desc',$quantity,$price,$barter,null);
         ";
+        print $query;
+
+        // Execute the Query
+        $this->query($query);
 
         // Request and return data from query
-        return $this->query($query);
+        return mysqli_insert_id($this->connection);
     }
 }
 ?>

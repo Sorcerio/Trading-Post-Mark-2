@@ -10,12 +10,13 @@
     $thisURL = $domain.$phpSelf;
 
     // Forum Variables
-    $title = "";
-    $desc = "";
-    $quantity = "";
-    $price = "";
-    $barter = "";
-    $terms = "";
+    $errorText = "Forum_Failed";
+    $title = $errorText;
+    $desc = $errorText;
+    $quantity = $errorText;
+    $price = $errorText;
+    $barter = false;
+    $terms = false;
 
     // Forum Error Flags
     $title_Error = false;
@@ -32,11 +33,104 @@
 
     // Process Submitted Form
     if(isset($_POST["submit"])) {
-        // ...
-    }
-?>
+        // Check security
+        if(!securityCheck($thisURL)) {
+            // Failed security
+            // TODO: Log to Database infraction w/ user info
 
-<h1 class="jumboHeader">Submit Listing to the Trading Hub</h1>
+            // Inform user they're bad people
+            $out = "<h1>You do not have permission for this page.</h1>";
+            die($out);
+        }
+
+        // Sanitize inputs
+        // Sanitize text inputs
+        $title = htmlentities($_POST["title"], ENT_QUOTES, "UTF-8");
+        $desc = htmlentities($_POST["description"], ENT_QUOTES, "UTF-8");
+        $quantity = htmlentities($_POST["description"], ENT_QUOTES, "UTF-8");
+        $price = htmlentities($_POST["description"], ENT_QUOTES, "UTF-8");
+
+        // Sanitize check box inputs
+        if(isset($_POST["barter"])) {
+            $barter = true;
+        }
+
+        if(isset($_POST["terms"])) {
+            $terms = true;
+        }
+
+        // Add data to record
+        $dataRecord[] = $title;
+        $dataRecord[] = $desc;
+        $dataRecord[] = $quantity;
+        $dataRecord[] = $price;
+        $dataRecord[] = $barter;
+        $dataRecord[] = $terms;
+
+        // Validate user input
+        if($title == $errorText) {
+            $errorMsg[] = "Please enter a title.";
+            $title_Error = true;
+        }
+
+        if($desc == $errorText) {
+            $errorMsg[] = "Please enter a description.";
+            $desc_Error = true;
+        }
+
+        if($quantity == $errorText) {
+            $errorMsg[] = "Please enter a quantity.";
+            $quantity_Error = true;
+        }
+
+        if($price == $errorText) {
+            $errorMsg[] = "Please enter a price.";
+            $price_Error = true;
+        }
+
+        if($terms == false) {
+            $errorMsg[] = "Please agree to the terms or discontinue use.";
+            $terms_Error = true;
+        }
+
+        // Forum Processing
+        if(!$errorMsg) {
+            // Forum passed validation
+            if($debug) {
+                print "<h3>Forum passed validation</h3><p>";
+                print_r($dataRecord);
+                print "</p>";
+            }
+
+            //...
+        }
+    }
+
+    if(isset($_POST['submit']) and empty($errorMsg)) {
+        // Display submit header
+        print '<h1 class="jumboHeader">Thanks for your Listing</h1>';
+        print '<p>Your listing of \''.$title.'\' has been published <a href="LISTING_LINK">here</a>.</p>';
+
+    } else {
+        // Display standard header
+        print '<h1 class="jumboHeader">Submit Listing to the Trading Hub</h1>';
+
+        // Display Error Messages if present
+        if($errorMsg) {
+            // Print top of div
+            print '<div class="forumErrors">';
+            
+            // Print all errors
+            foreach($errorMsg as $e) {
+                print '<p>'.$e.'</p>';
+            }
+
+            // Print end of div
+            print '</div>';
+        }
+
+    // 'ELSE' closed below to encompass form HTML
+?>
 
 <form action="actions/createListing.php" method="post" enctype="multipart/form-data">
     <div>
@@ -90,6 +184,11 @@
     
     <input type="submit" value="Submit" id="submit" name="submit">
 </form>
+
+<?php
+    // Close 'ELSE' from above
+    }
+?>
 
 <!-- Footer -->
 <?php include ("assets/footer.php"); ?>

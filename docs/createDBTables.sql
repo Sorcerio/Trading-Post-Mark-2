@@ -8,8 +8,8 @@ DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account`(
 	accountID	INT(11) AUTO_INCREMENT NOT NULL,
     `name`		VARCHAR(255),
-    `password`	VARCHAR(60), # length of PHP hashed password
-    lastIPAddress	VARCHAR(15), # IPv4
+    `password`	VARCHAR(60), -- length of PHP hashed password
+    lastIPAddress	VARCHAR(15), -- IPv4
     
     CONSTRAINT account_PK PRIMARY KEY (accountID)    
 );
@@ -22,9 +22,17 @@ CREATE TABLE listing (
     description	VARCHAR(1000),
     quantity	INT(11),
     price		DOUBLE(11,2),
-    barter		INT(11),
-    image		VARCHAR(1000),
+    barter	    TINYINT(1),
     
     CONSTRAINT listing_PK PRIMARY KEY (listingID),
     CONSTRAINT listing_FK FOREIGN KEY (accountID) REFERENCES `account`(accountID)
+);
+
+CREATE TABLE image (
+    imageID     INT(11) AUTO_INCREMENT NOT NULL,
+    listingID   INT(11),
+    path        VARCHAR(1000),
+
+    CONSTRAINT image_PK PRIMARY KEY (imageID),
+    CONSTRAINT image_FK FOREIGN KEY (listingID) REFERENCES listing(listingID)
 );

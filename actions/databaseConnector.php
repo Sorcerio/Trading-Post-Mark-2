@@ -46,7 +46,8 @@ class databaseConnector {
             $rows = array();
 
             // Checks to see if an object was returned successfully
-            if(is_object($result = $this->connection->query($query))) {
+            // if(is_object($result = $this->connection->query($query))) {
+            if(is_object($result = mysqli_query($this->connection,$query))) {
                 // Move object parts to the data rows
                 while ($row = $result->fetch_assoc()) {
                     $rows[] = $row;
@@ -60,6 +61,7 @@ class databaseConnector {
             return $rows;
         } catch (MyException $e) {
             // If the object query fails
+            print '<h1>Query Failed. Report this.</h1>';
             return NULL;
         }
     }
@@ -104,10 +106,9 @@ class databaseConnector {
 
         // Build query
         $query = "
-            INSERT INTO trading_post.listing
-            VALUES (0,$account,$date,'$title','$desc',$quantity,$price,$barter,null);
+            INSERT INTO trading_post.listing (accountID,date,title,description,quantity,price,barter,image)
+            VALUES ($account,'$date','$title','$desc',$quantity,$price,$barter,null);
         ";
-        print $query;
 
         // Execute the Query
         $this->query($query);

@@ -16,7 +16,7 @@
 		// Print Cards
 		if(!empty($data)) {
 			foreach($data as $listing) {
-				print '<a href="listing.php?id='.$listing['listingId'].'">';
+				print '<a href="listing.php?id='.$listing['listingID'].'">';
 				print '<div class="leftPanel">';
 				print '<img src="LISTING_ADDRESS" alt="'.$listing['title'].' Image 1" onerror="this.src = \'images/noImage.png\';">';
 				print '</div>';

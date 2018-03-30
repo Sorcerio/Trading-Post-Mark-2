@@ -89,7 +89,7 @@ class databaseConnector {
     public function getMostRecentListings() {
         // Build query
         $query = "
-            SELECT * FROM trading_post.listings
+            SELECT * FROM trading_post.listing
             ORDER BY date DESC
             LIMIT 0,5;
         ";
@@ -104,7 +104,7 @@ class databaseConnector {
 
         // Build query
         $query = "
-            INSERT INTO trading_post.listings
+            INSERT INTO trading_post.listing
             VALUES (0,$account,$date,'$title','$desc',$quantity,$price,$barter,null);
         ";
         print $query;

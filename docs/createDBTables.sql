@@ -42,7 +42,7 @@ CREATE TABLE image (
 CREATE TABLE infraction(
     infractionID    INT  AUTO_INCREMENT NOT NULL,
     accountID    INT(11),
-    description    VARCHAR(255) DEFAULT NULL
+    description    VARCHAR(255) DEFAULT NULL,
 
     CONSTRAINT infraction_PK PRIMARY KEY (infractionID),
     CONSTRAINT infraction_FK FOREIGN KEY (accountID) REFERENCES  `account`(accountID)

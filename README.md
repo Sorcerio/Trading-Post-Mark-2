@@ -6,3 +6,10 @@
 * Apache, v2.*
 * PHP, 7.*
 * MySQL, 5.*
+
+### Future Improvements
+- [x] Do everything up until now.
+- [ ] Login Page
+- [ ] Account Page
+- [ ] Browse Page
+- [ ] Log infractions

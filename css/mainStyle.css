@@ -453,10 +453,6 @@ form input[type="submit"]:hover {
     margin-top: 0px;
 }
 
-.listingPanel > .leftPanel > #product_image_container {
-    /* object-fit: contain; */
-}
-
 .listingPanel > .leftPanel > div > img.wide {
     background-color: rgba(245,245,245,0.5);
     box-sizing: border-box;

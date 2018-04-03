@@ -2,6 +2,8 @@
   Run this script on a database named "trading_post" to create the database for the Trading Post
 */
 
+DROP TABLE IF EXISTS image;
+DROP TABLE IF EXISTS infraction;
 DROP TABLE IF EXISTS listing;
 DROP TABLE IF EXISTS `account`;
 
@@ -40,7 +42,7 @@ CREATE TABLE image (
 CREATE TABLE infraction(
     infractionID    INT  AUTO_INCREMENT NOT NULL,
     accountID    INT(11),
-    description    VARCHAR(255) DEFAULT NULL
+    description    VARCHAR(255) DEFAULT NULL,
 
     CONSTRAINT infraction_PK PRIMARY KEY (infractionID),
     CONSTRAINT infraction_FK FOREIGN KEY (accountID) REFERENCES  `account`(accountID)

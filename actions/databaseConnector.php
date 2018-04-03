@@ -106,8 +106,8 @@ class databaseConnector {
 
         // Build query
         $query = "
-            INSERT INTO trading_post.listing (accountID,date,title,description,quantity,price,barter,image)
-            VALUES ($account,'$date','$title','$desc',$quantity,$price,$barter,null);
+            INSERT INTO trading_post.listing (accountID,date,title,description,quantity,price,barter)
+            VALUES ($account,'$date','$title','$desc',$quantity,$price,$barter);
         ";
 
         // Execute the Query

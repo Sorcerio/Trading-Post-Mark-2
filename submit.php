@@ -17,6 +17,9 @@
     $price = $errorText;
     $barter = false;
     $terms = false;
+    $image1 = "";
+    $image2 = "";
+    $image3 = "";
 
     // Forum Error Flags
     $title_Error = false;
@@ -25,6 +28,9 @@
     $price_Error = false;
     $barter_Error = false;
     $terms_Error = false;
+    $image1_Error = false;
+    $image2_Error = false;
+    $image3_Error = false;
 
     // Misc Variables
     // $mailed = false;
@@ -33,15 +39,15 @@
 
     // Process Submitted Form
     if(isset($_POST["submit"])) {
-        // Check security
-        if(!securityCheck($thisURL)) {
-            // Failed security
-            // TODO: Log to Database infraction w/ user info
+        // // Check security
+        // if(!securityCheck($thisURL)) {
+        //     // Failed security
+        //     // TODO: Log to Database infraction w/ user info
 
-            // Inform user they're bad people
-            $out = "<h1>You do not have permission for this page.</h1>";
-            die($out);
-        }
+        //     // Inform user they're bad people
+        //     $out = "<h1>You do not have permission for this page.</h1>";
+        //     die($out);
+        // }
 
         // Sanitize inputs
         // Sanitize text inputs
@@ -59,6 +65,27 @@
             $terms = true;
         }
 
+        // Build Images
+
+        print_r($_FILES);
+
+        $imgDirectory = "uploads/images/";
+        if($_FILES['image1']['error'] == 0) {
+            // Set target image
+            $image1 = $imgDirectory.basename($_FILES['image1']['name']);
+        }
+
+        if($_FILES['image2']['error'] == 0) {
+            // Set target image
+            $image1 = $imgDirectory.basename($_FILES['image1']['name']);
+        }
+
+        if($_FILES['image3']['error'] == 0) {
+            // Set target image
+            $image1 = $imgDirectory.basename($_FILES['image1']['name']);
+        }
+        
+
         // Add data to record
         $dataRecord[] = $title;
         $dataRecord[] = $desc;
@@ -66,6 +93,9 @@
         $dataRecord[] = $price;
         $dataRecord[] = $barter;
         $dataRecord[] = $terms;
+        $dataRecord[] = $image1;
+        $dataRecord[] = $image2;
+        $dataRecord[] = $image3;
 
         // Validate user input
         if($title == "") {
@@ -99,6 +129,78 @@
             $terms_Error = true;
         }
 
+        // Validate Images
+        // Check image size to see if it's a fake image
+        if(getimagesize($_FILES['image1']['tmp_name']) == false) {
+            $errorMsg[] = "Image 1 appears to not be a real image.";
+            $image1_Error = true;
+
+            // TODO: Log infraction as fake images could be disguised runtimes
+        }
+
+        if(getimagesize($_FILES['image2']['tmp_name']) == false) {
+            $errorMsg[] = "Image 2 appears to not be a real image.";
+            $image2_Error = true;
+
+            // TODO: Log infraction as fake images could be disguised runtimes
+        }
+
+        if(getimagesize($_FILES['image3']['tmp_name']) == false) {
+            $errorMsg[] = "Image 3 appears to not be a real image.";
+            $image3_Error = true;
+
+            // TODO: Log infraction as fake images could be disguised runtimes
+        }
+
+        // Check if file exists
+        if(file_exists($image1)) {
+            // TODO: Rename the image with time code appended
+        }
+
+        if(file_exists($image2)) {
+            // TODO: Rename the image with time code appended
+        }
+
+        if(file_exists($image3)) {
+            // TODO: Rename the image with time code appended
+        }
+
+        // Check file size
+        $maxUploadSize = 3*1024;
+        if ($_FILES['image1']['size'] > $maxUploadSize) {
+            $errorMsg[] = "Image 1 is greater than 3 MBs.";
+            $image1_Error = true;
+        }
+
+        if ($_FILES['image2']['size'] > $maxUploadSize) {
+            $errorMsg[] = "Image 2 is greater than 3 MBs.";
+            $image2_Error = true;
+        }
+
+        if ($_FILES['image3']['size'] > $maxUploadSize) {
+            $errorMsg[] = "Image 3 is greater than 3 MBs.";
+            $image3_Error = true;
+        }
+
+        // Check file type
+        $image1_type = strtolower(pathinfo($image1,PATHINFO_EXTENSION));
+        if($image1_type != "jpg" && $image1_type != "png" && $image1_type != "jpeg"&& $image1_type != "gif") {
+            $errorMsg[] = "Image 1 is not the correct file type.";
+            $image1_Error = true;
+        }
+
+        $image2_type = strtolower(pathinfo($image2,PATHINFO_EXTENSION));
+        if($image2_type != "jpg" && $image2_type != "png" && $image2_type != "jpeg"&& $image2_type != "gif") {
+            $errorMsg[] = "Image 1 is not the correct file type.";
+            $image2_Error = true;
+        }
+
+        $image3_type = strtolower(pathinfo($image3,PATHINFO_EXTENSION));
+        if($image3_type != "jpg" && $image3_type != "png" && $image3_type != "jpeg"&& $image3_type != "gif") {
+            $errorMsg[] = "Image 1 is not the correct file type.";
+            $image3_Error = true;
+        }
+
         // Forum Processing
         if(!$errorMsg) {
             // Forum passed validation
@@ -110,6 +212,31 @@
         }
     }
 
+    // Move images to uploads file
+    if(empty($errorMsg)) {
+        if($image1 != "") {
+            if(!move_uploaded_file($_FILES['image1']['tmp_name'], $image1)) {
+                $errorMsg[] = "Image 1's upload encountered an error. Please try again.";
+                $image1_Error = true;
+            }
+        }
+
+        if($image2 != "") {
+            if(!move_uploaded_file($_FILES['image2']['tmp_name'], $image2)) {
+                $errorMsg[] = "Image 2's upload encountered an error. Please try again.";
+                $image2_Error = true;
+            }
+        }
+
+        if($image3 != "") {
+            if(!move_uploaded_file($_FILES['image3']['tmp_name'], $image3)) {
+                $errorMsg[] = "Image 3's upload encountered an error. Please try again.";
+                $image3_Error = true;
+            }
+        }
+    }
+
+    // Final check of submission validation
     if(isset($_POST['submit']) and empty($errorMsg)) {
         // Get Account ID
         // TODO: GET ACCOUNT ID
@@ -120,6 +247,9 @@
 
         // Submit data to database
         $listingId = $node->createNewListingPHP($title,$desc,$quantity,$price,$barter,$accId);
+
+        // Add images to database
+        // ...
 
         // Display submit header
         print '<h1 class="jumboHeader">Thanks for your Listing</h1>';
@@ -181,13 +311,10 @@
 
         <div>
             <h3 class="instruction">Images of your Listing</h3>
-            <p class="details">Optional. Accepts IMAGE_FILES_ACCEPTED up to IMAGE_SIZE_ACCEPTED.</p>
+            <p class="details">Optional. We accept JPG, JPEG, PNG, and GIF files up to 3 MBs each.</p>
             <input type="file" name="image1" id="image1" class="inputFile"><br>
-            <!-- <label for="image1">Choose an Image</label> -->
             <input type="file" name="image2" id="image2" class="inputFile"><br>
-            <!-- <label for="image2">Choose an Image</label> -->
             <input type="file" name="image3" id="image3" class="inputFile"><br>
-            <!-- <label for="image3">Choose an Image</label> -->
         </div>
 
         <div>

@@ -92,7 +92,7 @@ class databaseConnector {
         // Build query
         $query = "
             SELECT * FROM trading_post.listing
-            ORDER BY date DESC
+            ORDER BY listingID DESC
             LIMIT 0,5;
         ";
 
@@ -126,6 +126,17 @@ class databaseConnector {
 
         // Execute query
         $this->query($query);
+    }
+
+    public function getImageByListingId($id) {
+        // Build query
+        $query = "
+            SELECT * FROM trading_post.image
+            WHERE listingID = $id;
+        ";
+
+        // Request and return data from query
+        return $this->query($query);
     }
 }
 ?>

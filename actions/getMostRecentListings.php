@@ -16,14 +16,14 @@
             return $this->getMostRecentListings();
         }
 
-        // Gets top 5 most recent listings for use with HTML/JS/AJAX
-        public function getMostRecentListingsJS() {
-            // Connects to the database connector to retrieve query data
-            parent::databaseConnector();
+        // // Gets top 5 most recent listings for use with HTML/JS/AJAX
+        // public function getMostRecentListingsJS() {
+        //     // Connects to the database connector to retrieve query data
+        //     parent::databaseConnector();
 
-            // Prints a json to use display in HTML or to use with JS and/or AJAX
-            print(json_encode($this->getMostRecentListings()));
-        }
+        //     // Prints a json to use display in HTML or to use with JS and/or AJAX
+        //     print(json_encode($this->getMostRecentListings()));
+        // }
     }
 
     // Creates the initial object

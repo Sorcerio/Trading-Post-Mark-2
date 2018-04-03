@@ -116,5 +116,16 @@ class databaseConnector {
         // Request and return data from query
         return mysqli_insert_id($this->connection);
     }
+
+    public function addImageToListing($id,$path) {
+        // Build query
+        $query = "
+            INSERT INTO trading_post.image (listingID,path)
+            VALUES ($id,'$path');
+        ";
+
+        // Execute query
+        $this->query($query);
+    }
 }
 ?>

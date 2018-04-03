@@ -130,15 +130,38 @@
 
         // Validate Images
         if($image1 != "") {
-            verifyImage($image1,"1",$_FILES['image1']['tmp_name'],$_FILES['image1']['size']);
+            // Get validation
+            $response = verifyImage($image1,"1",$_FILES['image1']['tmp_name'],$_FILES['image1']['size']);
+
+            // Check if valid
+            if(!($response['valid'] == 1)) {
+                array_merge($errorMsg,$response['errors']);
+                $image1_Error = true;
+            }
+
+            print_r($response);
         }
 
         if($image2 != "") {
-            verifyImage($image2,"2",$_FILES['image2']['tmp_name'],$_FILES['image2']['size']);
+            // Get validation
+            $response = verifyImage($image2,"2",$_FILES['image2']['tmp_name'],$_FILES['image2']['size']);
+
+            // Check if valid
+            if(!($response['valid'] == 1)) {
+                array_merge($errorMsg,$response['errors']);
+                $image2_Error = true;
+            }
         }
 
         if($image3 != "") {
-            verifyImage($image3,"3",$_FILES['image3']['tmp_name'],$_FILES['image3']['size']);
+            // Get validation
+            $response = verifyImage($image3,"3",$_FILES['image3']['tmp_name'],$_FILES['image3']['size']);
+
+            // Check if valid
+            if(!($response['valid'] == 1)) {
+                array_merge($errorMsg,$response['errors']);
+                $image3_Error = true;
+            }
         }
 
         // Forum Processing
@@ -188,8 +211,21 @@
         // Submit data to database
         $listingId = $node->createNewListingPHP($title,$desc,$quantity,$price,$barter,$accId);
 
+        // Import images creator
+        include ("actions/addImageToListing.php");
+
         // Add images to database
-        // ...
+        if($image1 != "") {
+            $node->addImageToListingPHP($listingId,$image1);
+        }
+        
+        if($image2 != "") {
+            $node->addImageToListingPHP($listingId,$image2);
+        }
+
+        if($image3 != "") {
+            $node->addImageToListingPHP($listingId,$image3);
+        }
 
         // Display submit header
         print '<h1 class="jumboHeader">Thanks for your Listing</h1>';

@@ -28,7 +28,7 @@
     // Checks to see if an image passes full validation
     function verifyImage($image, $id, $tmpName, $size) {
         // Config
-        $maxUploadSize = 300000;
+        $maxUploadSize = 3145728;
 
         // Variables
         $imageValid = true;
@@ -62,7 +62,7 @@
 
         // Package response
         $responce = array();
-        $responce['valid'] = $imageValid;
+        $responce['valid'] = (int)$imageValid;
         $responce['errors'] = $errorMsg;
 
         // Return

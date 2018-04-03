@@ -138,5 +138,16 @@ class databaseConnector {
         // Request and return data from query
         return $this->query($query);
     }
+
+    public function getListingById($id) {
+        // Build query
+        $query = "
+            SELECT * FROM trading_post.listing
+            WHERE listingID = $id;
+        ";
+
+        // Request and return data from query
+        return $this->query($query);
+    }
 }
 ?>

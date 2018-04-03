@@ -85,7 +85,6 @@
             $image1 = $imgDirectory.basename($_FILES['image1']['name']);
         }
         
-
         // Add data to record
         $dataRecord[] = $title;
         $dataRecord[] = $desc;
@@ -130,75 +129,16 @@
         }
 
         // Validate Images
-        // Check image size to see if it's a fake image
-        if(getimagesize($_FILES['image1']['tmp_name']) == false) {
-            $errorMsg[] = "Image 1 appears to not be a real image.";
-            $image1_Error = true;
-
-            // TODO: Log infraction as fake images could be disguised runtimes
+        if($image1 != "") {
+            verifyImage($image1,"1",$_FILES['image1']['tmp_name'],$_FILES['image1']['size']);
         }
 
-        if(getimagesize($_FILES['image2']['tmp_name']) == false) {
-            $errorMsg[] = "Image 2 appears to not be a real image.";
-            $image2_Error = true;
-
-            // TODO: Log infraction as fake images could be disguised runtimes
+        if($image2 != "") {
+            verifyImage($image2,"2",$_FILES['image2']['tmp_name'],$_FILES['image2']['size']);
         }
 
-        if(getimagesize($_FILES['image3']['tmp_name']) == false) {
-            $errorMsg[] = "Image 3 appears to not be a real image.";
-            $image3_Error = true;
-
-            // TODO: Log infraction as fake images could be disguised runtimes
-        }
-
-        // Check if file exists
-        if(file_exists($image1)) {
-            // TODO: Rename the image with time code appended
-        }
-
-        if(file_exists($image2)) {
-            // TODO: Rename the image with time code appended
-        }
-
-        if(file_exists($image3)) {
-            // TODO: Rename the image with time code appended
-        }
-
-        // Check file size
-        $maxUploadSize = 3*1024;
-        if ($_FILES['image1']['size'] > $maxUploadSize) {
-            $errorMsg[] = "Image 1 is greater than 3 MBs.";
-            $image1_Error = true;
-        }
-
-        if ($_FILES['image2']['size'] > $maxUploadSize) {
-            $errorMsg[] = "Image 2 is greater than 3 MBs.";
-            $image2_Error = true;
-        }
-
-        if ($_FILES['image3']['size'] > $maxUploadSize) {
-            $errorMsg[] = "Image 3 is greater than 3 MBs.";
-            $image3_Error = true;
-        }
-
-        // Check file type
-        $image1_type = strtolower(pathinfo($image1,PATHINFO_EXTENSION));
-        if($image1_type != "jpg" && $image1_type != "png" && $image1_type != "jpeg"&& $image1_type != "gif") {
-            $errorMsg[] = "Image 1 is not the correct file type.";
-            $image1_Error = true;
-        }
-
-        $image2_type = strtolower(pathinfo($image2,PATHINFO_EXTENSION));
-        if($image2_type != "jpg" && $image2_type != "png" && $image2_type != "jpeg"&& $image2_type != "gif") {
-            $errorMsg[] = "Image 1 is not the correct file type.";
-            $image2_Error = true;
-        }
-
-        $image3_type = strtolower(pathinfo($image3,PATHINFO_EXTENSION));
-        if($image3_type != "jpg" && $image3_type != "png" && $image3_type != "jpeg"&& $image3_type != "gif") {
-            $errorMsg[] = "Image 1 is not the correct file type.";
-            $image3_Error = true;
+        if($image3 != "") {
+            verifyImage($image3,"3",$_FILES['image3']['tmp_name'],$_FILES['image3']['size']);
         }
 
         // Forum Processing

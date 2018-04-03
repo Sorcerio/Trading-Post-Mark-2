@@ -26,7 +26,46 @@
     }
 
     // Checks to see if an image passes full validation
-    function verifyImage() {
-        
+    function verifyImage($image, $id, $tmpName, $size) {
+        // Config
+        $maxUploadSize = 300000;
+
+        // Variables
+        $imageValid = true;
+        $errorMsg = array();
+
+        // Check image size to see if it's a fake image
+        if(getimagesize($tmpName) == false) {
+            $errorMsg[] = "Image ".$id." appears to not be a real image.";
+            $imageValid = false;
+
+            // TODO: Log infraction as fake images could be disguised runtimes
+        }
+
+        // Check if file exists
+        if(file_exists($image)) {
+            // TODO: Rename the image with time code appended
+        }
+
+        // Check file size
+        if ($size > $maxUploadSize) {
+            $errorMsg[] = "Image ".$id." is greater than 3 MBs.";
+            $imageValid = false;
+        }
+
+        // Check file extensions
+        $imageType = strtolower(pathinfo($image,PATHINFO_EXTENSION));
+        if($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg"&& $imageType != "gif") {
+            $errorMsg[] = "Image ".$id." is not the correct file type.";
+            $imageValid = false;
+        }
+
+        // Package response
+        $responce = array();
+        $responce['valid'] = $imageValid;
+        $responce['errors'] = $errorMsg;
+
+        // Return
+        return $responce;
     }
 ?>

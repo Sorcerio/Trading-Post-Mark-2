@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Custom
+uploads/images/SpaceOrBustComposite_Take4_ProfileSize.jpg
+
 # User-specific files
 *.suo
 *.user

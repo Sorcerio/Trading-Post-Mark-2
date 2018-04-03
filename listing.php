@@ -40,10 +40,10 @@
                             // Check to see if first image
                             if($tick == 0) {
                                 // Print image
-                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';">';
+                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="'.$data['title'].'_'.$tick.'">';
                             } else {
                                 // Print image hidden
-                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" style="display: none;">';
+                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="'.$data['title'].'_'.$tick.'" style="display: none;">';
                             }
                             
                             // Iterate
@@ -56,7 +56,7 @@
                 }
             ?>
         </div>
-        <div id="imageControls">
+        <div id="imageControls" <?php if($ready){if(!(count($images) > 1)){print 'style="display: none;"';}} ?>>
             <button class="imageButton listingButton" onclick="changeImage('<')">Back</button>
             <button class="imageButton listingButton" onclick="changeImage('>')">Next</button>
         </div>
@@ -84,9 +84,57 @@
         <h3>Description:</h3>
         <p id="product_description"><?php if($ready){print $data['description'];} ?></p>
 
-        <button class="listingButton contactButton" onclick="">Contact Seller</button>
+        <button class="listingButton contactButton" onclick="alert('Button Pressed')">Contact Seller</button>
     </div>
 </div>
+
+<!-- Button Control Script -->
+<script>
+    // Variables
+    <?php
+        if($ready) {
+            print 'var totalImages = '.count($images);
+        } else {
+            print 'var totalImages = -1';
+        }
+    ?>
+    var curImage = 0;
+
+    // Change the currently displayed image
+    function changeImage(direction) {
+        // Check if images were loaded
+        if(totalImages != -1) {
+            // Move the current image index
+            if(direction == "<") {
+                // Previous
+                if(curImage == 0) {
+                    curImage = totalImages;
+                } else {
+                    curImage--;
+                }
+            } else if(direction == ">") {
+                // Forward
+                if(curImage+1 == totalImages) {
+                    curImage = 0;
+                } else {
+                    curImage++;
+                }
+            }
+
+            // Loop through and show correct image
+            for(var i = 0; i <= totalImages; i++) {
+                // Decide if image should be shown
+                if(i == curImage) {
+                    // It should
+                    document.getElementById(<?php if($ready){print $data['title'];} ?>+"_"+i).style.display = "block";
+                } else {
+                    // It shouldn't
+                    document.getElementById(<?php if($ready){print $data['title'];} ?>+"_"+i).style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 
 <!-- Footer -->
 <?php include ("assets/footer.php"); ?>

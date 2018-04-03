@@ -40,10 +40,10 @@
                             // Check to see if first image
                             if($tick == 0) {
                                 // Print image
-                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="'.$data['title'].'_'.$tick.'">';
+                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="Image_'.$tick.'">';
                             } else {
                                 // Print image hidden
-                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="'.$data['title'].'_'.$tick.'" style="display: none;">';
+                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="Image_'.$tick.'" style="display: none;">';
                             }
                             
                             // Iterate
@@ -93,11 +93,12 @@
     // Variables
     <?php
         if($ready) {
-            print 'var totalImages = '.count($images);
+            print 'var totalImages = '.(count($images)-1).';';
         } else {
             print 'var totalImages = -1';
         }
     ?>
+    
     var curImage = 0;
 
     // Change the currently displayed image
@@ -114,7 +115,7 @@
                 }
             } else if(direction == ">") {
                 // Forward
-                if(curImage+1 == totalImages) {
+                if(curImage == totalImages) {
                     curImage = 0;
                 } else {
                     curImage++;
@@ -126,10 +127,10 @@
                 // Decide if image should be shown
                 if(i == curImage) {
                     // It should
-                    document.getElementById(<?php if($ready){print $data['title'];} ?>+"_"+i).style.display = "block";
+                    document.getElementById("Image_"+i).style.display = "initial";
                 } else {
                     // It shouldn't
-                    document.getElementById(<?php if($ready){print $data['title'];} ?>+"_"+i).style.display = "none";
+                    document.getElementById("Image_"+i).style.display = "none";
                 }
             }
         }

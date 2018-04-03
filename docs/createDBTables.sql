@@ -2,6 +2,8 @@
   Run this script on a database named "trading_post" to create the database for the Trading Post
 */
 
+DROP TABLE IF EXISTS image;
+DROP TABLE IF EXISTS infraction;
 DROP TABLE IF EXISTS listing;
 DROP TABLE IF EXISTS `account`;
 

@@ -71,6 +71,36 @@ h1, h2, h3 {
     }
 }
 
+.loadingText:after {
+  content: '.';
+  animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots {
+	0%, 20% {
+		color: rgba(0,0,0,0);
+		text-shadow:
+		.25em 0 0 rgba(0,0,0,0),
+		.5em 0 0 rgba(0,0,0,0);
+	}
+	40% {
+		color: whitesmoke;
+		text-shadow:
+		.25em 0 0 rgba(0,0,0,0),
+		.5em 0 0 rgba(0,0,0,0);
+	}
+	60% {
+		text-shadow:
+		.25em 0 0 whitesmoke,
+		.5em 0 0 rgba(0,0,0,0);
+	}
+	80%, 100% {
+		text-shadow:
+		.25em 0 0 whitesmoke,
+		.5em 0 0 whitesmoke;
+	}
+}
+
 /* Toolbar */
 .topNav {
     background-color: whitesmoke;
@@ -406,4 +436,65 @@ form input[type="submit"]:hover {
     color: whitesmoke;
     text-decoration: none;
     border-bottom: 1px dotted whitesmoke;
+}
+
+/* Listing */
+#listing #mainContent > h1 {
+    margin-bottom: 0px;
+}
+
+#listing #mainContent > h2 {
+    text-align: center;
+    margin-top: 0px;
+}
+
+.listingPanel > .rightPanel {
+    min-width: 275px;
+    width: 50%;
+}
+
+.listingPanel > .leftPanel > div > img {
+    background-color: rgba(245,245,245,0.5);
+    width: 90%;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.listingPanel > .rightPanel > h3 {
+    font-size: 30px;
+    margin: 0px;
+}
+
+.listingPanel > .rightPanel > p {
+    background-color: whitesmoke;
+    color: #333;
+    border-radius: 4px;
+    margin: 4px;
+    padding: 10px;
+}
+
+.listingButton {
+    background-color: #333;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.listingButton:hover {
+    background-color: whitesmoke;
+    color: #333;
+    cursor: pointer;
+}
+
+.contactButton {
+    display: block;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.imageButton {
+    padding-left: 10%;
+    padding-right: 10%;
 }

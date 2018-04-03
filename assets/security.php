@@ -1,25 +1,33 @@
 <?php
-    // performs a simple security check to see if our page has submitted the form to itself
+    // Checks to see if the page has actually been sent from the site
     function securityCheck($myFormURL = "") {
-        $debugThis = false;  // you have to specifically want to test this
+        // Config
+        $debugThis = false;
         
-        $status = true; // start off thinking everything is good until a test fails
+        // Variables
+        $status = true;
         
-        // when it is a form page check to make sure it submitted to itself
+        // Check to make sure the form came from itself
         if ($myFormURL != "") {
+            // Get the page the data came from
             $fromPage = htmlentities($_SERVER['HTTP_REFERER'], ENT_QUOTES, 'UTF-8');
             
-            //remove http or https
+            // Strip 'http' and 'https'
             $fromPage = preg_replace('#^https?:#', '', $fromPage);
             
-            if ($debugThis)
-                print '<p>From: ' . $fromPage . ' should match your Url: ' . $myFormURL;
-            
+            // Debug
+            if ($debugThis) {
+                print '<p>From: '.$fromPage.' should match your Url: '.$myFormURL;
+            }
+
+            // Check for status validation
             if ($fromPage != $myFormURL) {
+                // Validation failed
                 $status = false;
             }
         }
 
+        // Return status boolean
         return $status;
     }
 ?>

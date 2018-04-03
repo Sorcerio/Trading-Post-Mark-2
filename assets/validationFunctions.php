@@ -45,6 +45,9 @@
         // Check if file exists
         if(file_exists($image)) {
             // TODO: Rename the image with time code appended
+
+            $errorMsg[] = "Image ".$id."'s file name is taken. Try renaming the file.";
+            $imageValid = false;
         }
 
         // Check file size

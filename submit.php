@@ -40,14 +40,14 @@
     // Process Submitted Form
     if(isset($_POST["submit"])) {
         // // Check security
-        // if(!securityCheck($thisURL)) {
-        //     // Failed security
-        //     // TODO: Log to Database infraction w/ user info
+        if(!securityCheck($thisURL)) {
+            // Failed security
+            // TODO: Log to Database infraction w/ user info
 
-        //     // Inform user they're bad people
-        //     $out = "<h1>You do not have permission for this page.</h1>";
-        //     die($out);
-        // }
+            // Inform user they're bad people
+            $out = "<h1>You do not have permission for this page.</h1>";
+            die($out);
+        }
 
         // Sanitize inputs
         // Sanitize text inputs
@@ -66,9 +66,6 @@
         }
 
         // Build Images
-
-        print_r($_FILES);
-
         $imgDirectory = "uploads/images/";
         if($_FILES['image1']['error'] == 0) {
             // Set target image

@@ -25,8 +25,6 @@
     <div>
         <h1 class="loadingText" id="product_loadingText">Loading Images</h1>
         <div id="product_image_container">
-            <img src="images/noImage.png" alt="TITLE_OF_CONTENT" id="product_image_DEFAULT">
-            
             <?php
                 // Ready check
                 if($ready) {

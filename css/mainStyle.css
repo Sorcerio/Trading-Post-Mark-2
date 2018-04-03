@@ -238,6 +238,11 @@ footer > .footerButton:hover {
     color: whitesmoke;
 }
 
+/* Error 404 */
+.error404Text {
+    text-align: center;
+}
+
 /* Index */
 #index > #mainContent > h2 {
     margin-bottom: 0px;
@@ -448,16 +453,31 @@ form input[type="submit"]:hover {
     margin-top: 0px;
 }
 
+.listingPanel > .leftPanel > #product_image_container {
+    /* object-fit: contain; */
+}
+
+.listingPanel > .leftPanel > div > img.wide {
+    background-color: rgba(245,245,245,0.5);
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.listingPanel > .leftPanel > div > img.tall {
+    background-color: rgba(245,245,245,0.5);
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 10px;
+    width: auto;
+    height: 25em;
+}
+
 .listingPanel > .rightPanel {
     min-width: 275px;
     width: 50%;
-}
-
-.listingPanel > .leftPanel > div > img {
-    background-color: rgba(245,245,245,0.5);
-    width: 90%;
-    border-radius: 4px;
-    padding: 10px;
 }
 
 .listingPanel > .rightPanel > h3 {

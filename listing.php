@@ -15,6 +15,12 @@
         } else {
             $ready = false;
         }
+    } else {
+        // Redirect to 404
+        ob_start();
+        header("Location: 404.php");
+        ob_end_flush();
+        die();
     }
 ?>
 
@@ -37,13 +43,23 @@
                         // Images are present
                         $tick = 0;
                         foreach($images as $image) {
+                            // Decide image binding class
+                            $imgData = getimagesize($image['path']); // '0' is Width, '1'is Height
+                            if($imgData[0] >= $imgData[1]) {
+                                // It's wide
+                                $imgType = "wide";
+                            } else {
+                                // It's tall
+                                $imgType = "tall";
+                            }
+
                             // Check to see if first image
                             if($tick == 0) {
                                 // Print image
-                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="Image_'.$tick.'">';
+                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="Image_'.$tick.'" class="'.$imgType.'">';
                             } else {
                                 // Print image hidden
-                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="Image_'.$tick.'" style="display: none;">';
+                                print '<img src="'.$image['path'].'" alt="'.$data['title'].' Image '.$tick.'" onerror="this.src = \'images/noImage.png\';" id="Image_'.$tick.'" class="'.$imgType.'" style="display: none;">';
                             }
                             
                             // Iterate
@@ -72,7 +88,7 @@
         <p id="product_quantity">
             <?php 
                 if($ready) {
-                    if(isset($data['barter'])) {
+                    if($data['barter'] == 1) {
                         print 'Yes';
                     } else { 
                         print 'No';

@@ -6,7 +6,7 @@
 
 <!-- Top 5 Items -->
 <h2>Recent Additions</h2>
-<div class="flexContainer" id="top5Container">
+<div class="flexContainer listingObjectContainer">
 	<?php
 		// Load the 5 most recent listings
 		// Retrieve listing data

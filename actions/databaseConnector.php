@@ -149,5 +149,20 @@ class databaseConnector {
         // Request and return data from query
         return $this->query($query);
     }
+
+    public function getAllListingData($page, $limit) {
+        // Calculate offset
+        $offset = (($page-1)*$limit);
+
+        // Build query
+        $query = "
+            SELECT * FROM trading_post.listing
+            ORDER BY listingID DESC
+            LIMIT $offset,$limit;
+        ";
+
+        // Request and return data from query
+        return $this->query($query);
+    }
 }
 ?>

@@ -101,6 +101,10 @@ h1, h2, h3 {
 	}
 }
 
+.boldText {
+    font-weight: bold;
+}
+
 /* Toolbar */
 .topNav {
     background-color: whitesmoke;
@@ -273,6 +277,7 @@ footer > .footerButton:hover {
     .listingObjectContainer a {
         display: block;
         height: fit-content;
+        padding: 10px;
     }
 
     .listingObjectContainer a > .leftPanel {
@@ -515,3 +520,5 @@ form input[type="submit"]:hover {
     padding-left: 10%;
     padding-right: 10%;
 }
+
+/* Browse */

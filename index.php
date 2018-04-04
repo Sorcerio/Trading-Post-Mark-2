@@ -35,6 +35,7 @@
 				print '</div>';
 				print '<div class="rightPanel">';
 				print '<h2>'.$listing['title'].'</h2>';
+				print '<p><span class="boldText">$'.$listing['price'].'</span>, '.$listing['date'].'</p>';
 				print '<p>'.$listing['description'].'</p>';
 				print '</div>';
 				print '</a>';

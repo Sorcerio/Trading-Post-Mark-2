@@ -27,7 +27,7 @@
 </form>
 
 <!-- Displayed Content -->
-<ul class="listingObjectContainer">
+<div class="listingObjectContainer flexContainer">
     <?php
         // Include get listing code
         include ("actions/getAllListingData.php");
@@ -35,11 +35,16 @@
         // Pull the listings
         $listings = $node->getAllListingDataPHP($curPage,$limit);
 
+        // Include get image from id code
+        include ("actions/getImageByListingId.php");
+
         // Display the contents
         foreach($listings as $listing) {
+            // Pull image for listing
+            $images = $node->getImageByListingIdPHP($listing['listingID']);
+
             // Print Listing
-            print '<li>';
-            print '<a href="listing.php?id='.$listing['listingID'].'">';
+            print '<a href="listing.php?id='.$listing['listingID'].'" class="browseListing">';
             print '<div class="leftPanel">';
             if(empty($images)) {
                 // No custom image
@@ -51,14 +56,13 @@
             print '</div>';
             print '<div class="rightPanel">';
             print '<h2>'.$listing['title'].'</h2>';
+            print '<p><span class="boldText">$'.$listing['price'].'</span>, '.$listing['date'].'</p>';
             print '<p>'.$listing['description'].'</p>';
             print '</div>';
             print '</a>';
-            print '</li>';
         }
     ?>
-    <li>It's the start of the thing</li>
-</ul>
+</div>
 
 <!-- Footer -->
 <?php include ("assets/footer.php"); ?>

@@ -25,7 +25,7 @@
 ?>
 
 <h1 class="jumboHeader"><?php if($ready){print $data['title'];} ?></h1>
-<h2>Posted on: <?php if($ready){print $data['date'];} ?></h2>
+<h2>Posted on <?php if($ready){print date_format(date_create($data['date']),"d/m/Y");} ?></h2>
 
 <div class="listingPanel flexContainer">
     <div class="leftPanel">

@@ -30,7 +30,7 @@
 <ul class="listingObjectContainer">
     <?php
         // Include get listing code
-        include ("actions/getListingById.php");
+        include ("actions/getAllListingData.php");
 
         // Pull the listings
         $listings = $node->getAllListingDataPHP($curPage,$limit);

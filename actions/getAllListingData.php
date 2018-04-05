@@ -15,6 +15,14 @@
             // Return an array to use with further PHP programming
             return $this->getAllListingData($page,$limit);
         }
+
+        public function getAllListingLinksPHP($page,$limit) {
+            // Connects to the database connector to retrieve query data
+            parent::databaseConnector();
+
+            // Return an array to use with further PHP programming
+            return $this->getAllListingLinks($page,$limit);
+        }
     }
 
     // Creates the initial object

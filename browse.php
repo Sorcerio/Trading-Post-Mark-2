@@ -20,18 +20,41 @@
 <!-- Content Start -->
 <h1 class="jumboHeader">Browse</h1>
 
-<!-- Search Bar -->
-<form action="/action_page.php">
-    <input type="text" placeholder="Search.." name="search">
-    <button type="submit">Search</button>
-</form>
+<!-- Toolbar -->
+<div class="browseToolbar">
+    <!-- Page Bar -->
+    <ol>
+        <?php
+            // Include get listing code
+            include ("actions/getAllListingData.php");
+
+            // Pull the links
+            $links = $node->getAllListingLinksPHP(1,$limit);
+
+            // Build link bar
+            $tick = 1;
+            foreach($links as $link) {
+                // Print link
+                print '<li>';
+                print '<a href="'.$link.'">'.$tick.'</a>';
+                print '</li>';
+
+                // Iterate
+                $tick++;
+            }
+        ?>
+    </ol>
+
+    <!-- Search Bar -->
+    <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit">Search</button>
+    </form>
+</div>
 
 <!-- Displayed Content -->
 <div class="listingObjectContainer flexContainer">
     <?php
-        // Include get listing code
-        include ("actions/getAllListingData.php");
-
         // Pull the listings
         $listings = $node->getAllListingDataPHP($curPage,$limit);
 

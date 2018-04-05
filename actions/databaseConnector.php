@@ -164,5 +164,36 @@ class databaseConnector {
         // Request and return data from query
         return $this->query($query);
     }
+
+    public function getAllListingLinks($page, $limit) {
+        // Calculate offset
+        $offset = (($page-1)*$limit);
+
+        // Build query
+        $query = "
+            SELECT listingID FROM trading_post.listing
+            ORDER BY listingID DESC;
+        ";
+
+        // Request and return data from query
+        $data = $this->query($query);
+
+        // Create Links
+        $links = array();
+        $tick = 0;
+        foreach(array_slice($data,$offset,$limit) as $item) {
+            // Ignore 0 index
+            if(!($tick == 0)) {
+                // Add to links
+                $links[$tick] = "browse.php?page=".$tick."&limit=".$limit;
+            }
+
+            // Iterate
+            $tick++;
+        }
+        
+        // Return 
+        return $links;
+    }
 }
 ?>

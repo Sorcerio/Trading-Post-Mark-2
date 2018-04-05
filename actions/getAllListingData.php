@@ -16,12 +16,12 @@
             return $this->getAllListingData($page,$limit);
         }
 
-        public function getAllListingLinksPHP($page,$limit) {
+        public function getAllListingLinksPHP($limit) {
             // Connects to the database connector to retrieve query data
             parent::databaseConnector();
 
             // Return an array to use with further PHP programming
-            return $this->getAllListingLinks($page,$limit);
+            return $this->getAllListingLinks($limit);
         }
     }
 

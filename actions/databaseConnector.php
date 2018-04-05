@@ -165,10 +165,7 @@ class databaseConnector {
         return $this->query($query);
     }
 
-    public function getAllListingLinks($page, $limit) {
-        // Calculate offset
-        $offset = (($page-1)*$limit);
-
+    public function getAllListingLinks($limit) {
         // Build query
         $query = "
             SELECT listingID FROM trading_post.listing
@@ -180,8 +177,16 @@ class databaseConnector {
 
         // Create Links
         $totalPages = ceil(((count($data)-$limit)/$limit)+1);
-        for($i = 1; $i <= $totalPages; $i++) {
-            $links[$i] = "browse.php?page=".$i."&limit=".$limit;
+        for($i = 0; $i <= $totalPages; $i++) {
+            // Create package
+            $package = array();
+
+            // Build Package
+            $package['page'] = $i+1;
+            $package['link'] = "browse.php?page=".($i+1)."&limit=".$limit;
+
+            // Add Package to Links
+            $links[$i] = $package;
         }
 
         // Return 

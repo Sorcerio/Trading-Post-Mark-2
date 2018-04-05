@@ -562,13 +562,13 @@ form input[type="submit"]:hover {
 }
 
 .browseToolbar > ol > li a.current {
-    background-color: whitesmoke;
-    color: #333;
+    background-color: grey;
+    color: whitesmoke;
 }
 
 .browseToolbar > ol > li a.current:hover {
-    background-color: #333;
-    color: whitesmoke;
+    background-color: whitesmoke;
+    color: #333;
 }
 
 .browseToolbar > form {

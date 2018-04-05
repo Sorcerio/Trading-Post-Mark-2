@@ -524,8 +524,20 @@ form input[type="submit"]:hover {
 }
 
 /* Browse */
+.browseToolbar {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 27px;
+}
+
 .browseToolbar > ol {
     list-style-type: none;
+    width: fit-content;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
 .browseToolbar > ol > li {
@@ -557,4 +569,45 @@ form input[type="submit"]:hover {
 .browseToolbar > ol > li a.current:hover {
     background-color: #333;
     color: whitesmoke;
+}
+
+.browseToolbar > form {
+    width: 25%;
+    min-width: 264px;
+    margin: auto;
+}
+
+.browseToolbar > form > input {
+    width: 70%;
+    display: inline;
+    margin-top: 4px;
+}
+
+.browseToolbar > form > button {
+    width: 24%;
+    background-color: #333;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    display: inline;
+    padding: 4px;
+    margin-top: 4px;
+}
+
+.browseToolbar > form > button:hover {
+    background-color: whitesmoke;
+    color: #333;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .browseToolbar > form > button, .browseToolbar > form > input {
+        min-width: 264px;
+    }
+}
+
+.listingObjectContainer {
+    border-top: 1px solid whitesmoke;
+    padding-top: 10px;
+    margin-top: 10px;
 }

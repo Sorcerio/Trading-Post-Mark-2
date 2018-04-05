@@ -22,6 +22,15 @@
 
 <!-- Toolbar -->
 <div class="browseToolbar">
+    <!-- Search Bar -->
+    <form action="browse.php" method="get">
+        <input type="hidden" name="page" value="1">
+        <input type="hidden" name="limit" <?php print 'value="'.$limit.'"'; ?>>
+
+        <input type="text" placeholder="Search" name="search">
+        <button type="submit">Search</button>
+    </form>
+
     <!-- Page Bar -->
     <ol>
         <?php
@@ -30,6 +39,8 @@
 
             // Pull the links
             $links = $node->getAllListingLinksPHP(1,$limit);
+
+            // print_r($links);
 
             // Print previous link
             if(!($curPage-1 <= 0)) {
@@ -64,12 +75,6 @@
             print '<li><a href="'.$links[$nextNum].'">></a></li>';
         ?>
     </ol>
-
-    <!-- Search Bar -->
-    <form action="/action_page.php">
-        <input type="text" placeholder="Search.." name="search">
-        <button type="submit">Search</button>
-    </form>
 </div>
 
 <!-- Displayed Content -->

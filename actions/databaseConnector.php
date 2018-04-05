@@ -179,19 +179,11 @@ class databaseConnector {
         $data = $this->query($query);
 
         // Create Links
-        $links = array();
-        $tick = 0;
-        foreach(array_slice($data,$offset,$limit) as $item) {
-            // Ignore 0 index
-            if(!($tick == 0)) {
-                // Add to links
-                $links[$tick] = "browse.php?page=".$tick."&limit=".$limit;
-            }
-
-            // Iterate
-            $tick++;
+        $totalPages = ceil(((count($data)-$limit)/$limit)+1);
+        for($i = 1; $i <= $totalPages; $i++) {
+            $links[$i] = "browse.php?page=".$i."&limit=".$limit;
         }
-        
+
         // Return 
         return $links;
     }

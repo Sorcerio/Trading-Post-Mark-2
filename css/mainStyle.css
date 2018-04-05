@@ -524,4 +524,37 @@ form input[type="submit"]:hover {
 }
 
 /* Browse */
-    /* No Unique Style */
+.browseToolbar > ol {
+    list-style-type: none;
+}
+
+.browseToolbar > ol > li {
+    display: inline;
+}
+
+.browseToolbar > ol > li a {
+    color: whitesmoke;
+    text-decoration: none;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    margin-right: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.browseToolbar > ol > li a:hover {
+    background-color: whitesmoke;
+    color: #333;
+}
+
+.browseToolbar > ol > li a.current {
+    background-color: whitesmoke;
+    color: #333;
+}
+
+.browseToolbar > ol > li a.current:hover {
+    background-color: #333;
+    color: whitesmoke;
+}

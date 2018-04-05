@@ -31,17 +31,37 @@
             // Pull the links
             $links = $node->getAllListingLinksPHP(1,$limit);
 
+            // Print previous link
+            if(!($curPage-1 <= 0)) {
+                $prevNum = $curPage-1;
+            } else {
+                $prevNum = $curPage;
+            }
+            print '<li><a href="'.$links[$prevNum].'"><</a></li>';
+
             // Build link bar
             $tick = 1;
             foreach($links as $link) {
                 // Print link
-                print '<li>';
-                print '<a href="'.$link.'">'.$tick.'</a>';
-                print '</li>';
+                if($tick == $curPage) {
+                    // Current page
+                    print '<li><a href="'.$link.'" class="current">'.$tick.'</a></li>';
+                } else {
+                    // Not current page
+                    print '<li><a href="'.$link.'">'.$tick.'</a></li>';
+                }
 
                 // Iterate
                 $tick++;
             }
+
+            // Print next link
+            if(!($curPage+1 > count($links))) {
+                $nextNum = $curPage+1;
+            } else {
+                $nextNum = $curPage;
+            }
+            print '<li><a href="'.$links[$nextNum].'">></a></li>';
         ?>
     </ol>
 

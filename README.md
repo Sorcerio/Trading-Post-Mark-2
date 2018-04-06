@@ -7,9 +7,30 @@
 * PHP, 7.*
 * MySQL, 5.*
 
-### Future Improvements
-- [x] Do everything up until now.
+### Development Progress
+- [x] Toolbar
+- [x] Footer
+- [x] Index Page
+    - [x] Top Five
+- [x] Disclaimer Page
+- [x] Listing Page
+    - [x] Show images
+    - [x] Get listing data
+- [ ] Submit Page
+    - [x] Take text
+    - [x] Take images
+    - [ ] Link to User Account
+    - [ ] Contact Button
 - [ ] Login Page
+    - [ ] Login form
+    - [ ] New account form
+    - [ ] Proper redirects
 - [ ] Account Page
-- [ ] Browse Page
+    - [ ] Info panel
+    - [ ] Account options
+    - [ ] Chat (?)
+- [x] Browse Page
+    - [x] Searchs
+    - [x] Paginate
+    - [ ] Filters (?)
 - [ ] Log infractions

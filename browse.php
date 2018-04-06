@@ -26,10 +26,17 @@
 ?>
 
 <!-- Content Start -->
-<h1 class="jumboHeader">Browse</h1>
+<a href="browse.php" class="jumboLink">
+    <h1 class="jumboHeader">Browse</h1>
+</a>
 
 <!-- Toolbar -->
 <div class="browseToolbar">
+    <!-- Back Text -->
+    <a href="browse.php" <?php if(!$isSearch){print 'style="display:none;"';} ?>>
+        <p>Go Back</p>
+    </a>
+
     <!-- Search Bar -->
     <form action="browse.php" method="get">
         <input type="hidden" name="page" value="1">
@@ -49,6 +56,22 @@
             if($isSearch) {
                 // Search
                 $links = $node->getAllListingLinksPHP_Search($limit,$search);
+
+                // Validate search term
+                if(empty($links)) {
+                    // Search failed
+                    // Print Screen
+                    print '<div class="searchFailText">';
+                    print '<h1>No Results</h1>';
+                    print '<p>Search term "'.$search.'" was not found.</p>';
+                    print '</div>';
+
+                    // Print Footer
+                    include ("assets/footer.php");
+
+                    // Stop execution
+                    die();
+                }
             } else {
                 // No Search
                 $links = $node->getAllListingLinksPHP($limit);

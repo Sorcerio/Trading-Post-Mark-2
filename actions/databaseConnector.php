@@ -176,6 +176,7 @@ class databaseConnector {
         $data = $this->query($query);
 
         // Create Links
+        $links = array();
         $totalPages = ceil(((count($data)-$limit)/$limit)+1);
         for($i = 0; $i < $totalPages; $i++) {
             // Create package
@@ -223,6 +224,7 @@ class databaseConnector {
         $data = $this->query($query);
 
         // Create Links
+        $links = array();
         $totalPages = ceil(((count($data)-$limit)/$limit)+1);
         for($i = 0; $i < $totalPages; $i++) {
             // Create package

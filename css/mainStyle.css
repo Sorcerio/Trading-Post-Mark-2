@@ -46,6 +46,11 @@ h1, h2, h3 {
     font-family: "Quarca";
 }
 
+.jumboLink {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
 .jumboHeader {
     font-family: Quarca, Calibri;
     text-align: center;
@@ -526,9 +531,80 @@ form input[type="submit"]:hover {
 /* Browse */
 .browseToolbar {
     width: 100%;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 27px;
+}
+
+.browseToolbar > a {
+    font-weight: 30px;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.browseToolbar > a:hover {
+    background-color: whitesmoke;
+    color: #333;
+}
+
+.browseToolbar > a > p {
+    width: 50%;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    padding: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.browseToolbar > a:hover > p {
+    background-color: whitesmoke;
+}
+
+.browseToolbar > form {
+    width: 25%;
+    min-width: 264px;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.browseToolbar > form > input {
+    width: 70%;
+    display: inline;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+.browseToolbar > form > button {
+    width: 24%;
+    background-color: #333;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    display: inline;
+    padding: 4px;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+.browseToolbar > form > button:hover {
+    background-color: whitesmoke;
+    color: #333;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .browseToolbar > form > button, .browseToolbar > form > input {
+        min-width: 264px;
+    }
+}
+
+.listingObjectContainer {
+    border-top: 1px solid whitesmoke;
+    padding-top: 10px;
+    margin-top: 10px;
 }
 
 .browseToolbar > ol {
@@ -578,46 +654,15 @@ form input[type="submit"]:hover {
     }
 }
 
-.browseToolbar > form {
-    width: 25%;
-    min-width: 264px;
-    margin: auto;
-    box-sizing: border-box;
+.searchFailText {
+    text-align: center;
 }
 
-.browseToolbar > form > input {
-    width: 70%;
-    display: inline;
-    margin-top: 4px;
-    box-sizing: border-box;
+.searchFailText > h1 {
+    margin-bottom: 0px;
 }
 
-.browseToolbar > form > button {
-    width: 24%;
-    background-color: #333;
-    color: whitesmoke;
-    border: 1px solid whitesmoke;
-    border-radius: 4px;
-    display: inline;
-    padding: 4px;
-    margin-top: 4px;
-    box-sizing: border-box;
-}
-
-.browseToolbar > form > button:hover {
-    background-color: whitesmoke;
-    color: #333;
-    cursor: pointer;
-}
-
-@media screen and (max-width: 600px) {
-    .browseToolbar > form > button, .browseToolbar > form > input {
-        min-width: 264px;
-    }
-}
-
-.listingObjectContainer {
-    border-top: 1px solid whitesmoke;
-    padding-top: 10px;
-    margin-top: 10px;
+.searchFailText > p {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }

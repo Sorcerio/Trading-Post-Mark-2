@@ -571,16 +571,25 @@ form input[type="submit"]:hover {
     color: #333;
 }
 
+@media screen and (max-width: 600px) {
+    .browseToolbar > ol > li a {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+}
+
 .browseToolbar > form {
     width: 25%;
     min-width: 264px;
     margin: auto;
+    box-sizing: border-box;
 }
 
 .browseToolbar > form > input {
     width: 70%;
     display: inline;
     margin-top: 4px;
+    box-sizing: border-box;
 }
 
 .browseToolbar > form > button {
@@ -592,6 +601,7 @@ form input[type="submit"]:hover {
     display: inline;
     padding: 4px;
     margin-top: 4px;
+    box-sizing: border-box;
 }
 
 .browseToolbar > form > button:hover {

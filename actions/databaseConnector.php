@@ -177,7 +177,7 @@ class databaseConnector {
 
         // Create Links
         $totalPages = ceil(((count($data)-$limit)/$limit)+1);
-        for($i = 0; $i <= $totalPages; $i++) {
+        for($i = 0; $i < $totalPages; $i++) {
             // Create package
             $package = array();
 

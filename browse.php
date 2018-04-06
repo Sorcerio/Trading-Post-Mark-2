@@ -11,7 +11,7 @@
         // Not set
         // Redirect to browse.php, but with page and limit parameters
         ob_start();
-        header("Location: browse.php?page=1&limit=15");
+        header("Location: browse.php?page=1&limit=14");
         ob_end_flush();
         die();
     }
@@ -43,24 +43,25 @@
             // Set Max Pages
             $maxPages = 5;
 
-            // // Print previous link
-            // if(!($curPage-1 <= 0)) {
-            //     $prevNum = $curPage-1;
-            // } else {
-            //     $prevNum = $curPage;
-            // }
-            // print '<li><a href="'.$links[$prevNum]['link'].'"><</a></li>';
+            // Print Previous Link
+            // NOTE: $curPage is begins index with 1, not 0
+            if(isset($links[$curPage-2])) {
+                $prevNum = $curPage-2;
+            } else {
+                $prevNum = 0;
+            }
+            print '<li><a href="'.$links[$prevNum]['link'].'"><</a></li>';
 
             // Calculate link bar Offset
             $offset = $curPage-ceil($maxPages/2);
-            print $offset;
             if($offset < 0) {
                 $offset = 0;
             }
 
             // Build link bar
             $tick = 1;
-            foreach(array_splice($links,$offset,$maxPages) as $link) {
+            $splice = $links;
+            foreach(array_splice($splice,$offset,$maxPages) as $link) {
                 // Print link
                 if($link['page'] == $curPage) {
                     // Current page
@@ -71,16 +72,14 @@
                 }
             }
 
-            // // Print last page link
-            // print '<li><a href="'.$links[count($links)].'">'.count($links).'</a></li>';
-
-            // // Print next link
-            // if(!($curPage+1 > count($links)) and isset($links[$curPage+1])) {
-            //     $nextNum = $curPage+1;
-            // } else {
-            //     $nextNum = $curPage;
-            // }
-            // print '<li><a href="'.$links[$nextNum]['link'].'">></a></li>';
+            // Print Next Link
+            // NOTE: $curPage is begins index with 1, not 0
+            if(isset($links[$curPage])) {
+                $nextNum = $curPage;
+            } else {
+                $nextNum = count($links)-1;
+            }
+            print '<li><a href="'.$links[$nextNum]['link'].'">></a></li>';
         ?>
     </ol>
 </div>

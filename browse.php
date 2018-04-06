@@ -15,6 +15,14 @@
         ob_end_flush();
         die();
     }
+
+    // Check to see if a search has been activated
+    if(isset($_GET['search'])) {
+        $isSearch = true;
+        $search = $_GET['search'];
+    } else {
+        $isSearch = false;
+    }
 ?>
 
 <!-- Content Start -->
@@ -38,8 +46,14 @@
             include ("actions/getAllListingData.php");
 
             // Pull the links
-            $links = $node->getAllListingLinksPHP($limit);
-
+            if($isSearch) {
+                // Search
+                $links = $node->getAllListingLinksPHP_Search($limit,$search);
+            } else {
+                // No Search
+                $links = $node->getAllListingLinksPHP($limit);
+            }
+            
             // Set Max Pages
             $maxPages = 5;
 
@@ -88,7 +102,13 @@
 <div class="listingObjectContainer flexContainer">
     <?php
         // Pull the listings
-        $listings = $node->getAllListingDataPHP($curPage,$limit);
+        if($isSearch) {
+            // Search
+            $listings = $node->getAllListingDataPHP_Search($curPage,$limit,$search);
+        } else {
+            // No Search
+            $listings = $node->getAllListingDataPHP($curPage,$limit);
+        }
 
         // Include get image from id code
         include ("actions/getImageByListingId.php");

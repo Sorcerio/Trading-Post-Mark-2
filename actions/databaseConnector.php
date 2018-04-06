@@ -192,5 +192,52 @@ class databaseConnector {
         // Return 
         return $links;
     }
+
+    public function getAllListingData_Search($page, $limit, $search) {
+        // Calculate offset
+        $offset = (($page-1)*$limit);
+
+        // Build query
+        $query = "
+            SELECT * FROM trading_post.listing
+            WHERE title LIKE '%$search%'
+                OR description LIKE '%$search%'
+            ORDER BY listingID DESC
+            LIMIT $offset,$limit;
+        ";
+
+        // Request and return data from query
+        return $this->query($query);
+    }
+
+    public function getAllListingLinks_Search($limit, $search) {
+        // Build query
+        $query = "
+            SELECT listingID FROM trading_post.listing
+            WHERE title LIKE '%$search%'
+                OR description LIKE '%$search%'
+            ORDER BY listingID DESC;
+        ";
+
+        // Request and return data from query
+        $data = $this->query($query);
+
+        // Create Links
+        $totalPages = ceil(((count($data)-$limit)/$limit)+1);
+        for($i = 0; $i < $totalPages; $i++) {
+            // Create package
+            $package = array();
+
+            // Build Package
+            $package['page'] = $i+1;
+            $package['link'] = "browse.php?page=".($i+1)."&limit=".$limit;
+
+            // Add Package to Links
+            $links[$i] = $package;
+        }
+
+        // Return 
+        return $links;
+    }
 }
 ?>

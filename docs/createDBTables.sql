@@ -11,6 +11,7 @@ CREATE TABLE `account`(
 	accountID	INT(11) AUTO_INCREMENT NOT NULL,
     `name`		VARCHAR(255),
     `password`	VARCHAR(60), -- length of PHP hashed password
+    email    VARCHAR(255),
     lastIPAddress	VARCHAR(15), -- IPv4
     
     CONSTRAINT account_PK PRIMARY KEY (accountID)    

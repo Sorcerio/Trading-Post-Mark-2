@@ -38,7 +38,7 @@
 		<a href="index.php" <?php if($path_parts['filename'] == "index"){print 'class="active"';} ?>>Home</a>
 		<a href="submit.php" <?php if($path_parts['filename'] == "submit"){print 'class="active"';} ?>>Submit</a>
 		<a href="browse.php" <?php if($path_parts['filename'] == "browse" or $path_parts['filename'] == "listing"){print 'class="active"';} ?>>Browse</a>
-		<a href="account.php" <?php if($path_parts['filename'] == "account"){print 'class="active"';} ?>>Account</a>
+		<a href="login.php" <?php if($path_parts['filename'] == "account" or $path_parts['filename'] == "login"){print 'class="active"';} ?>>Account</a>
 		<a href="javascript:void(0);" class="icon" onclick="setResponsiveNav()">&#9776;</a>
 	</nav>
 

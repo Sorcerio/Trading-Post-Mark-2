@@ -19,7 +19,7 @@
 - [ ] Submit Page
     - [x] Take text
     - [x] Take images
-    - [ ] Link to User Account
+    - [ ] Link to User Account (Need Login and Account done)
     - [ ] Contact Button
 - [ ] Login Page
     - [ ] Login form

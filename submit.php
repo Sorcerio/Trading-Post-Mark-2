@@ -39,7 +39,7 @@
 
     // Process Submitted Form
     if(isset($_POST["submit"])) {
-        // // Check security
+        // Check security
         if(!securityCheck($thisURL)) {
             // Failed security
             // TODO: Log to Database infraction w/ user info

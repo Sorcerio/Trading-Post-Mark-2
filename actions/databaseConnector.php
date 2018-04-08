@@ -241,5 +241,16 @@ class databaseConnector {
         // Return 
         return $links;
     }
+
+    public function createAccount($name,$password,$email,$ip) {
+        // Build query
+        $query = "
+            INSERT INTO trading_post.account (name,password,email,lastIPAddress)
+            VALUES ('$name','$password','$email','$ip');
+        ";
+
+        // Execute query
+        $this->query($query);
+    }
 }
 ?>

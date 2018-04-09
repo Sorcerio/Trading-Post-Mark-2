@@ -212,7 +212,7 @@
 <!-- Panels -->
 <div>
     <div class="leftPanel">
-        <h2>Login</h2>
+        <h2 class="centerText">Login</h2>
         <form action="<?php print $phpSelf; ?>" method="post">
             <div>
                 <div>
@@ -230,28 +230,28 @@
     </div>
 
     <div class="rightPanel">
-        <h2>Create Account</h2>
+        <h2 class="centerText">Create Account</h2>
         <form action="<?php print $phpSelf; ?>" method="post">
             <div>
                 <div>
                     <h3 class="instruction">Enter a Username:</h3>
                     <p class="details">A unique username with any characters.</p>
                     <input type="text" name="usernameA" placeholder="Username" <?php print 'value='.$username; ?>>
-                    <input type="text" name="usernameB" placeholder="Confirm Username">
+                    <input type="text" name="usernameB" placeholder="Confirm Username" class="secondInput">
                 </div>
 
                 <div>
                     <h3 class="instruction">Enter a Password:</h3>
                     <p class="details">A unique password with any characters.</p>
                     <input type="password" name="passwordA" placeholder="Password">
-                    <input type="password" name="passwordB" placeholder="Confirm Password">
+                    <input type="password" name="passwordB" placeholder="Confirm Password" class="secondInput">
                 </div>
 
                 <div>
                     <h3 class="instruction">Enter your Email:</h3>
                     <p class="details">Your email. It is used to allow contact between you and possible buyers.</p>
                     <input type="email" name="emailA" placeholder="Email" <?php print 'value='.$email; ?>>
-                    <input type="email" name="emailB" placeholder="Confirm Email">
+                    <input type="email" name="emailB" placeholder="Confirm Email" class="secondInput">
                 </div>
             </div>
 

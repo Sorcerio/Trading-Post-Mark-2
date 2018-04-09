@@ -50,6 +50,17 @@
             $email = filter_var($_POST["emailA"], FILTER_SANITIZE_EMAIL);
             $emailConf = filter_var($_POST["emailA"], FILTER_SANITIZE_EMAIL);
 
+            // Include Create Account
+            include "actions/createAccount.php";
+            $createAccountNode = $node;
+
+            // Check if Username is already taken
+            if($createAccountNode->checkIfUserTakenPHP($username)) {
+                // Username is taken
+                $errorMsg[] = "'".$username."' is taken. Try another username.";
+                $username_ERROR = true;
+            }
+
             // Validate input
             if($username == $errorText) {
                 $errorMsg[] = "Please enter a username.";
@@ -112,8 +123,23 @@
 <?php
     // Check Error Messages
     if(empty($errorMsg)) {
-        // No errors found
-        print '<h1>Form submitted</h1>';
+        // Decide which form
+        if(isset($_POST["createAcc"])) {
+            // Create Account Form
+            // Execute the insert
+            $createAccountNode->createAccountPHP($username,$password,$email,$ip);
+
+            // Relocate
+            // ob_start();
+            // header("Location: account.php");
+            // ob_end_flush();
+            // die();
+
+            print "<h1>Name: ".$username.", Pass: ".$password.", Email: ".$email.", Ip: ".$ip."</h1>";
+        } else {
+            // Log-In Form
+            // ...
+        }
     } else {
         // Errors present
         // Print top of div
@@ -179,8 +205,8 @@
                 <div>
                     <h3 class="instruction">Enter your Email:</h3>
                     <p class="details">Your email. It is used to allow contact between you and possible buyers.</p>
-                    <input type="password" name="emailA" placeholder="Email" <?php print 'value='.$email; ?>>
-                    <input type="password" name="emailB" placeholder="Confirm Email">
+                    <input type="email" name="emailA" placeholder="Email" <?php print 'value='.$email; ?>>
+                    <input type="email" name="emailB" placeholder="Confirm Email">
                 </div>
             </div>
 

@@ -249,8 +249,22 @@ class databaseConnector {
             VALUES ('$name','$password','$email','$ip');
         ";
 
-        // Execute query
-        $this->query($query);
+        // Retrun boolean
+        return $this->query($query);
+    }
+
+    public function checkIfUserTaken($name) {
+        // Build query
+        $query = "
+            SELECT name FROM trading_post.account
+            WHERE name LIKE '$name';
+        ";
+
+        // Retrieve Query
+        $data = $this->query($query);
+
+        // Retrun boolean
+        return !(empty($data));
     }
 }
 ?>

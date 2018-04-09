@@ -18,6 +18,16 @@
             // Execute the submission query and return listing id
             return $this->createAccount($name,$password,$email,$ip);
         }
+
+        // Checks to see if the username has already been put into the database
+        // True = Taken, False = Not Taken
+        public function checkIfUserTakenPHP($name) {
+            // Connects to the database connector to retrieve query data
+            parent::databaseConnector();
+
+            // Execute the submission query and return listing id
+            return $this->checkIfUserTaken($name);
+        }
     }
 
     // Creates the initial object that methods can be called from

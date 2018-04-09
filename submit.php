@@ -37,6 +37,17 @@
     $errorMsg = array();
     $dataRecord = array();
 
+    // Check for login status
+    if(!isset($_SESSION['login'])) {
+        // Person is not logged in
+        // Prompt to login
+        print '<div class="loginPrompt">';
+        print '<h1>Please log in to submit a listing.</h1>';
+        print '<a href="login.php">Log In Here</a>';
+        print '</div>';
+        die();
+    }
+
     // Process Submitted Form
     if(isset($_POST["submit"])) {
         // Check security
@@ -199,17 +210,16 @@
     // Final check of submission validation
     if(isset($_POST['submit']) and empty($errorMsg)) {
         // Get Account ID
-        // TODO: GET ACCOUNT ID
-        $accId = 0;
+        $accId = $_SESSION['login'];
 
         // Import listing creator
-        include ("actions/createListing.php");
+        include "actions/createListing.php";
 
         // Submit data to database
         $listingId = $node->createNewListingPHP($title,$desc,$quantity,$price,$barter,$accId);
 
         // Import images creator
-        include ("actions/addImageToListing.php");
+        include "actions/addImageToListing.php";
 
         // Add images to database
         if($image1 != "") {

@@ -456,6 +456,45 @@ form input[type="submit"]:hover {
     border-bottom: 1px dotted whitesmoke;
 }
 
+.loginPrompt {
+    background-color: #333;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    padding: 4px;
+    margin: auto;
+    margin-top: 50px;
+    width: 40%;
+    min-width: 258px;
+    text-align: center;
+}
+
+.loginPrompt > h1 {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.loginPrompt > a {
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 10px;
+    box-sizing: border-box;
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.loginPrompt > a:hover {
+    background-color: whitesmoke;
+    color: #333;
+    cursor: pointer;
+}
+
 /* Listing */
 #listing #mainContent > h1 {
     margin-bottom: 0px;

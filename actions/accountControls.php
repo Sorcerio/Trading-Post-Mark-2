@@ -48,6 +48,15 @@
             // Execute the submission query and return listing id
             return $this->getAccountIdByName($name);
         }
+
+        // Gets the account data from the account id. Excludes password.
+        public function getAccountInfoFromIdPHP($id) {
+            // Connects to the database connector to retrieve query data
+            parent::databaseConnector();
+
+            // Execute the submission query and return listing id
+            return $this->getAccountInfoFromId($id);
+        }
     }
     
     // Creates the initial object

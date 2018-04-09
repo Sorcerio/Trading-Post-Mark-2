@@ -1,22 +1,30 @@
 <!-- Header -->
 <?php include ("assets/header.php"); ?>
 
-<!-- Content Start -->
-<h1>Trading Hub Mark 2 : Account</h1>
-<p>
-    <?php
-        if(isset($_SESSION['login'])) {
-            print 'AccountID: '.$_SESSION['login'];
-        } else {
-            print 'AccountID: NO DATA';
-        }
+<?php
+    // TESTING INFO. REMOVE WHEN DONE WITH TESTING.
+    if(isset($_SESSION['login'])) {
+        print 'AccountID: '.$_SESSION['login'];
+    } else {
+        print 'AccountID: NO DATA';
+    }
 
-        if(isset($_GET['logout'])) {
-            session_unset();
-            session_destroy();
-        }
-    ?>
-</p>
+    if(isset($_GET['logout'])) {
+        session_unset();
+        session_destroy();
+    }
+?>
+
+<?php
+    // Include the account controls
+    include "actions/accountControls.php";
+
+    // Pull account data
+    $data = $node->getAccountInfoFromIdPHP(4);
+?>
+
+<!-- Content Start -->
+<h1 class="jumboHeader">Hello, <?php print $data['name']; ?></h1>
 
 <!-- Footer -->
 <?php include ("assets/footer.php"); ?>

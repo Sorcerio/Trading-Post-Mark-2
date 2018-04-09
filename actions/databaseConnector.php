@@ -303,5 +303,16 @@ class databaseConnector {
         // Retrun boolean
         return $this->query($query)[0]['accountID'];
     }
+
+    public function getAccountInfoFromId($id) {
+        // Build query
+        $query = "
+            SELECT name,email FROM trading_post.account
+            WHERE accountID = $id;
+        ";
+
+        // Retrun boolean
+        return $this->query($query)[0];
+    }
 }
 ?>

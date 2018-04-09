@@ -16,6 +16,18 @@
 
 	// Include Security
 	require_once("assets/security.php");
+
+	// Initialize Session
+	session_start();
+
+	// Set Session Canary
+	if(!isset($_SESSION['canary'])) {
+		// // Rehash session id
+		// session_regenerate_id(true);
+
+		// Set session initiation time
+		$_SESSION['canary'] = time();
+	}
 ?>
 
 <!DOCTYPE html>

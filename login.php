@@ -2,6 +2,15 @@
 <?php include ("assets/header.php"); ?>
 
 <?php
+    // Check for logged in redirect
+    if(isset($_SESSION['login'])) {
+        // Relocate to account page because user is already logged in
+        ob_start();
+        header("Location: account.php");
+        ob_end_flush();
+        die();
+    }
+
     // Establish shared variables
     // Include the validation functions
     include "assets/validationFunctions.php";
@@ -27,6 +36,9 @@
     // Error Controls
     $errorMsg = array();
 
+    // Include Account Controls
+    include "actions/accountControls.php";
+
     // Check for submit
     if(isset($_POST["login"]) or isset($_POST["createAcc"])) {
         // Check security
@@ -50,12 +62,8 @@
             $email = filter_var($_POST["emailA"], FILTER_SANITIZE_EMAIL);
             $emailConf = filter_var($_POST["emailA"], FILTER_SANITIZE_EMAIL);
 
-            // Include Create Account
-            include "actions/createAccount.php";
-            $createAccountNode = $node;
-
             // Check if Username is already taken
-            if($createAccountNode->checkIfUserTakenPHP($username)) {
+            if($node->checkIfUserTakenPHP($username)) {
                 // Username is taken
                 $errorMsg[] = "'".$username."' is taken. Try another username.";
                 $username_ERROR = true;
@@ -110,10 +118,32 @@
         } else {
             // Log-In Form
             // Sanitize Input
-            // ...
+            $username = htmlentities($_POST["username"], ENT_QUOTES, "UTF-8");
+            $password = htmlentities($_POST["password"], ENT_QUOTES, "UTF-8");
+
+            // Validate Input
+            if($username == $errorText) {
+                $errorMsg[] = "Please enter a username.";
+                $username_ERROR = true;
+            }
+
+            if($password == $errorText) {
+                $errorMsg[] = "Please enter a password.";
+                $password_ERROR = true;
+            }
+
+            // Check if Log In is valid
+            if(!($node->tryLoginPHP($username,$password))) {
+                // Login is not valid
+                $errorMsg[] = "Log In is invalid.";
+                $username_ERROR = true;
+                $password_ERROR = true;
+            }
         }
     } else {
-        print '<h1>Form not submitted</h1>';
+        if($debug) {
+            print '<h1>Form not submitted</h1>';
+        }
     }
 ?>
 
@@ -127,18 +157,33 @@
         if(isset($_POST["createAcc"])) {
             // Create Account Form
             // Execute the insert
-            $createAccountNode->createAccountPHP($username,$password,$email,$ip);
+            $node->createAccountPHP($username,$password,$email,$ip);
+            
+            // Get user's AccountId
+            $accountId = $node->getAccountIdByNamePHP($username);
+
+            // Attach data to Session
+            $_SESSION['login'] = $accountId;
 
             // Relocate
-            // ob_start();
-            // header("Location: account.php");
-            // ob_end_flush();
-            // die();
+            ob_start();
+            header("Location: account.php");
+            ob_end_flush();
+            die();
 
-            print "<h1>Name: ".$username.", Pass: ".$password.", Email: ".$email.", Ip: ".$ip."</h1>";
-        } else {
+        } else if(isset($_POST["login"])) {
             // Log-In Form
-            // ...
+            // Get user's AccountId
+            $accountId = $node->getAccountIdByNamePHP($username);
+
+            // Attach data to Session
+            $_SESSION['login'] = $accountId;
+
+            // Relocate
+            ob_start();
+            header("Location: account.php");
+            ob_end_flush();
+            die();
         }
     } else {
         // Errors present

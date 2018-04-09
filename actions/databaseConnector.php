@@ -266,5 +266,42 @@ class databaseConnector {
         // Retrun boolean
         return !(empty($data));
     }
+
+    public function tryLoginInfo($name,$password) {
+        // Build query
+        $query = "
+            SELECT * FROM trading_post.account
+            WHERE name LIKE '$name';
+        ";
+
+        // Ready Valid
+        $isValid = false;
+
+        // Retrieve Query
+        $data = $this->query($query)[0];
+
+        // Check if account exists
+        if(!empty($data)) {
+            // If it's not empty
+            // Check if Name and Password match
+            if($data['password'] == $password and $data['name'] == $name) {
+                $isValid = true;
+            }
+        } // On fail, not valid
+
+        // Return boolean
+        return $isValid;
+    }
+
+    public function getAccountIdByName($name) {
+        // Build query
+        $query = "
+            SELECT accountID FROM trading_post.account
+            WHERE name LIKE '$name';
+        ";
+
+        // Retrun boolean
+        return $this->query($query)[0]['accountID'];
+    }
 }
 ?>

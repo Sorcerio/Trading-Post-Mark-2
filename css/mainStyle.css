@@ -714,3 +714,63 @@ form input[type="submit"]:hover {
 .secondInput {
     margin-top: 4px;
 }
+
+/* Account */
+.accountBoxes > div {
+    background-color: #333;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    width: 25%;
+    min-width: 250px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.accountBoxes > div * {
+    margin: 0px;
+}
+
+.accountBoxes > div > h2 {
+    background-color: whitesmoke;
+    color: #333;
+    margin-bottom: 4px;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+}
+
+.accountBoxes > div > p {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.accountBoxes > div > p:not(:last-of-type) {
+    border-bottom: 1px solid whitesmoke;
+    padding-bottom: 8px;
+}
+
+.accountBoxes > div > p > span {
+    font-weight: normal;
+}
+
+.accountBoxes > div > button {
+    background-color: #333;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    width: 90%;
+    padding: 10px;
+}
+
+.accountBoxes > div > button:not(:first-of-type) {
+    margin-top: 4px;
+}
+
+.accountBoxes > div > button:hover {
+    background-color: whitesmoke;
+    color: #333;
+    cursor: pointer;
+}

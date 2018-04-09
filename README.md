@@ -19,12 +19,13 @@
 - [ ] Submit Page
     - [x] Take text
     - [x] Take images
-    - [ ] Link to User Account (Need Login and Account done)
+    - [x] Link to User Account (Need Login and Account done)
     - [ ] Contact Button
 - [ ] Login Page
-    - [ ] Login form
-    - [ ] New account form
-    - [ ] Proper redirects
+    - [x] Login form
+    - [x] New account form
+    - [x] Proper redirects
+    - [ ] Make it pretty
 - [ ] Account Page
     - [ ] Info panel
     - [ ] Account options

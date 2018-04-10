@@ -195,13 +195,19 @@
         <h2>Your Products</h2>
         <ol>
             <?php
-                foreach($listingData as $listing) {
-                    print '<li>';
-                    print '<a href="listing.php?id='.$listing['listingID'].'">';
-                    print '<h3>'.$listing['title'].'</h3>';
-                    print '<p>$'.$listing['price'].' | '.date_format(date_create($listing['date']),"d/m/Y").'</p>';
-                    print '</a>';
-                    print '</li>';
+                // Check if listings avalible
+                if(!empty($listingData)) {
+                    // Print the items
+                    foreach($listingData as $listing) {
+                        print '<li>';
+                        print '<a href="listing.php?id='.$listing['listingID'].'">';
+                        print '<h3>'.$listing['title'].'</h3>';
+                        print '<p>$'.$listing['price'].' | '.date_format(date_create($listing['date']),"d/m/Y").'</p>';
+                        print '</a>';
+                        print '</li>';
+                    }
+                } else {
+                    print '<p class="centerText">You have no active products.</p>';
                 }
             ?>
         </ol>

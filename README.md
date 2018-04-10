@@ -19,16 +19,16 @@
 - [ ] Submit Page
     - [x] Take text
     - [x] Take images
-    - [x] Link to User Account (Need Login and Account done)
+    - [x] Link to User Account
     - [ ] Contact Button
-- [ ] Login Page
+- [x] Login Page
     - [x] Login form
     - [x] New account form
     - [x] Proper redirects
-    - [ ] Make it pretty
-- [ ] Account Page
-    - [ ] Info panel
-    - [ ] Account options
+    - [x] Make it pretty
+- [x] Account Page
+    - [x] Info panel
+    - [x] Account options
     - [ ] Chat (?)
 - [x] Browse Page
     - [x] Searchs

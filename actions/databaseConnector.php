@@ -67,27 +67,6 @@ class databaseConnector {
     }
 
     // ------------------------- Start Fetchable Functions ----------------------------------------------
-
-    // public function getAllStoreItemTables($modifier){
-    //     if($modifier == "All") {
-    //         $query = "
-    //             SELECT * FROM storeitems;
-    //         ";
-    //     } else if($modifier == "Premium") {
-    //         $query = "
-    //             SELECT * FROM storeitems;
-    //             WHERE isPremium = '1';
-    //         ";  
-    //     } else {
-    //         $query = "
-    //             SELECT * FROM storeitems
-    //             WHERE Category LIKE '%{$modifier}%';
-    //         ";
-    //     }
-
-    //     return $this->query($query);
-    // }
-
     public function getMostRecentListings() {
         // Build query
         $query = "
@@ -272,10 +251,6 @@ class databaseConnector {
 
     public function tryLoginInfo($id,$password) {
         // Build query
-        // $query = "
-        //     SELECT * FROM trading_post.account
-        //     WHERE name LIKE '$name';
-        // ";
         $query = "
             SELECT * FROM trading_post.account
             WHERE accountID = $id;
@@ -298,7 +273,7 @@ class databaseConnector {
                 // Check if Name and Password match
                 if($info['algoName'] == "unknown") {
                     // Not a hashed password
-                    if($data[0]['password'] == $password and $data[0]['name'] == $name) {
+                    if($data[0]['password'] == $password) {
                         $isValid = true;
                     }
                 } else {
@@ -359,11 +334,17 @@ class databaseConnector {
         // Execute compare password query
         $compPass = $this->query($queryA)[0]['password'];
 
+        // Check if passwords match
+        $isValid = $this->tryLoginInfo($accountId,$oldPass);
+
         // Check if retrieved password and old password are the same
         $allSet = false;
-        if($compPass == $oldPass) {
+        if($isValid) {
             // Toggle
             $allSet = true;
+
+            // Hash new password
+            $newPass = password_hash($newPass, PASSWORD_DEFAULT);
 
             // Build reassign password query
             $queryB = "
@@ -395,8 +376,6 @@ class databaseConnector {
 
         // Check if retrieved password and old password are the same
         $allSet = false;
-        // if($compPass == $password) {
-        // if(password_verify($password,$compPass)) {
         if($isValid) {
             // Toggle
             $allSet = true;

@@ -243,6 +243,9 @@ class databaseConnector {
     }
 
     public function createAccount($name,$password,$email,$ip) {
+        // Hash password
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
         // Build query
         $query = "
             INSERT INTO trading_post.account (name,password,email,lastIPAddress)
@@ -267,11 +270,15 @@ class databaseConnector {
         return !(empty($data));
     }
 
-    public function tryLoginInfo($name,$password) {
+    public function tryLoginInfo($id,$password) {
         // Build query
+        // $query = "
+        //     SELECT * FROM trading_post.account
+        //     WHERE name LIKE '$name';
+        // ";
         $query = "
             SELECT * FROM trading_post.account
-            WHERE name LIKE '$name';
+            WHERE accountID = $id;
         ";
 
         // Ready Valid
@@ -282,12 +289,23 @@ class databaseConnector {
             // Retrieve Query
             $data = $this->query($query);
 
+            // Get Password Info
+            $info = password_get_info($data[0]['password']);
+
             // Check if account exists
             if(!empty($data[0])) {
                 // If it's not empty
                 // Check if Name and Password match
-                if($data[0]['password'] == $password and $data[0]['name'] == $name) {
-                    $isValid = true;
+                if($info['algoName'] == "unknown") {
+                    // Not a hashed password
+                    if($data[0]['password'] == $password and $data[0]['name'] == $name) {
+                        $isValid = true;
+                    }
+                } else {
+                    // A hashed password
+                    if(password_verify($password, $data[0]['password'])) {
+                        $isValid = true;
+                    }
                 }
             } // On fail, not valid
         } catch (Exception $e) {
@@ -372,9 +390,14 @@ class databaseConnector {
         // Execute compare password query
         $compPass = $this->query($queryA)[0]['password'];
 
+        // Check if passwords match
+        $isValid = $this->tryLoginInfo($accountId,$password);
+
         // Check if retrieved password and old password are the same
         $allSet = false;
-        if($compPass == $password) {
+        // if($compPass == $password) {
+        // if(password_verify($password,$compPass)) {
+        if($isValid) {
             // Toggle
             $allSet = true;
 

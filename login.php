@@ -153,7 +153,8 @@
             }
 
             // Check if Login is valid
-            if(!($node->tryLoginPHP($username,$password))) {
+            // if(!($node->tryLoginPHP($username,$password))) {
+            if(!($node->tryLoginPHP($node->getAccountIdByNamePHP($username),$password))) {
                 // Login is not valid
                 $errorMsg[] = "Login is invalid.";
                 $username_ERROR = true;

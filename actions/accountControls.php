@@ -11,9 +11,6 @@
             // Connects to the database connector to retrieve query data
             parent::databaseConnector();
 
-            // // Hash Password
-            // $password = password_hash($password, PASSWORD_DEFAULT);
-
             // Execute the submission query and return listing id
             return $this->createAccount($name,$password,$email,$ip);
         }
@@ -28,16 +25,13 @@
             return $this->checkIfUserTaken($name);
         }
 
-        // Checks if username and password link to a valid account
-        public function tryLoginPHP($name,$password) {
+        // Checks if id and password link to a valid account
+        public function tryLoginPHP($id,$password) {
             // Connects to the database connector to retrieve query data
             parent::databaseConnector();
 
-            // // Hash Password
-            // $password = password_hash($password, PASSWORD_DEFAULT);
-
             // Return an array to use with further PHP programming
-            return $this->tryLoginInfo($name,$password);
+            return $this->tryLoginInfo($id,$password);
         }
 
         // Gets the user's account id using thier name
@@ -62,10 +56,6 @@
         public function changeUserPasswordPHP($accountId,$oldPass,$newPass) {
             // Connects to the database connector to retrieve query data
             parent::databaseConnector();
-
-            // // Hash Password
-            // $oldPass = password_hash($oldPass, PASSWORD_DEFAULT);
-            // $newPass = password_hash($newPass, PASSWORD_DEFAULT);
 
             // Execute the submission query and return listing id
             return $this->changeUserPassword($accountId,$oldPass,$newPass);

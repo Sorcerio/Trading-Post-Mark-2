@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account`(
 	accountID	INT(11) AUTO_INCREMENT NOT NULL,
     `name`		VARCHAR(255),
-    `password`	VARCHAR(60), -- length of PHP hashed password
+    `password`	VARCHAR(255), -- Use 60 if using 'PASSWORD_BCRYPT' or 255 if using 'PASSWORD_DEFAULT'
     email    VARCHAR(255),
     lastIPAddress	VARCHAR(15), -- IPv4
     

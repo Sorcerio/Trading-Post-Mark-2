@@ -774,3 +774,30 @@ form input[type="submit"]:hover {
     color: #333;
     cursor: pointer;
 }
+
+#productsPanel > ol {
+    list-style-type: none;
+    padding: 0px;
+    text-align: left;
+    max-height: 300px;
+    overflow: auto;
+}
+
+#productsPanel > ol > li:not(:last-of-type) {
+    margin-bottom: 4px;
+}
+
+#productsPanel > ol > li > a {
+    color: whitesmoke;
+    text-decoration: none;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    display: block;
+    padding: 4px;
+}
+
+#productsPanel > ol > li > a:hover {
+    background-color: whitesmoke;
+    color: #333;
+    cursor: pointer;
+}

@@ -801,3 +801,13 @@ form input[type="submit"]:hover {
     color: #333;
     cursor: pointer;
 }
+
+.accountForm > div > div {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 4px;
+}
+
+.accountForm > div .secondInput {
+    margin-top: 4px;
+}

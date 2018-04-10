@@ -57,6 +57,18 @@
             // Execute the submission query and return listing id
             return $this->getAccountInfoFromId($id);
         }
+
+        // Attempts to change the users password and compares old password to ensure security
+        public function changeUserPasswordPHP($accountId,$oldPass,$newPass) {
+            // Connects to the database connector to retrieve query data
+            parent::databaseConnector();
+
+            // Hash Password
+            // ...
+
+            // Execute the submission query and return listing id
+            return $this->changeUserPassword($accountId,$oldPass,$newPass);
+        }
     }
     
     // Creates the initial object

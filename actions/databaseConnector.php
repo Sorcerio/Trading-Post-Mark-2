@@ -314,5 +314,47 @@ class databaseConnector {
         // Retrun boolean
         return $this->query($query)[0];
     }
+
+    public function getListingsByAccount($id) {
+        // Build query
+        $query = "
+            SELECT * FROM trading_post.listing
+            WHERE accountID = $id;
+        ";
+
+        // Retrun boolean
+        return $this->query($query);
+    }
+
+    public function changeUserPassword($accountId,$oldPass,$newPass) {
+        // Build compare password query
+        $queryA = "
+            SELECT password FROM trading_post.account
+            WHERE accountID = $accountId;
+        ";
+
+        // Execute compare password query
+        $compPass = $this->query($queryA)[0]['password'];
+
+        // Check if retrieved password and old password are the same
+        $allSet = false;
+        if($compPass == $oldPass) {
+            // Toggle
+            $allSet = true;
+
+            // Build reassign password query
+            $queryB = "
+                UPDATE trading_post.account
+                SET password = '$newPass'
+                WHERE accountID = $accountId;
+            ";
+
+            // Execute reassign password query
+            $this->query($queryB);
+        }
+
+        // Return boolean
+        return $allSet;
+    }
 }
 ?>

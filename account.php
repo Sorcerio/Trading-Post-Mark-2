@@ -4,8 +4,10 @@
 <?php
     // Logout Tag
     if(isset($_GET['logout'])) {
-        session_unset();
-        session_destroy();
+        if($_GET['logout'] == $_SESSION['login']) {
+            session_unset();
+            session_destroy();
+        }
     }
 ?>
 
@@ -131,7 +133,8 @@
 
     // Logs out the user
     function logoutUser() {
-        alert("User Triggered");
+        // Redirect to logout function on this page
+        window.location = "account.php?logout="+<?php print '"'.$_SESSION['login'].'"'; ?>;
     }
 
     // Shows/Hides the delete account menu

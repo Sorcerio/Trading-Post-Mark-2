@@ -277,17 +277,22 @@ class databaseConnector {
         // Ready Valid
         $isValid = false;
 
-        // Retrieve Query
-        $data = $this->query($query)[0];
+        // Give it a try
+        try {
+            // Retrieve Query
+            $data = $this->query($query);
 
-        // Check if account exists
-        if(!empty($data)) {
-            // If it's not empty
-            // Check if Name and Password match
-            if($data['password'] == $password and $data['name'] == $name) {
-                $isValid = true;
-            }
-        } // On fail, not valid
+            // Check if account exists
+            if(!empty($data[0])) {
+                // If it's not empty
+                // Check if Name and Password match
+                if($data[0]['password'] == $password and $data[0]['name'] == $name) {
+                    $isValid = true;
+                }
+            } // On fail, not valid
+        } catch (Exception $e) {
+            $isValid = false;
+        }
 
         // Return boolean
         return $isValid;
@@ -375,8 +380,9 @@ class databaseConnector {
 
             // Build reassign password query
             $queryB = "
-                DELETE FROM trading_post.account
-                WHERE $accountId;
+                UPDATE trading_post.account
+                SET name = 'DELETED', password = 'DELETED'
+                WHERE accountID = $accountId;
             ";
 
             // Execute reassign password query

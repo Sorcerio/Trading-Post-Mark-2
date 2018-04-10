@@ -75,6 +75,11 @@
                 $username_ERROR = true;
             }
 
+            if($username == "DELETED" or strtolower($username) == "password" or strtolower($username) == "user") {
+                $errorMsg[] = "That is not a valid account name.";
+                $username_ERROR = true;
+            }
+
             if($usernameConf == $errorText) {
                 $errorMsg[] = "Please confirm your username.";
                 $username_ERROR = true;
@@ -83,6 +88,11 @@
             if($password == $errorText) {
                 $errorMsg[] = "Please enter a password.";
                 $password_ERROR = true;
+            }
+
+            if($password == "DELETED" or strtolower($password) == "password" or strtolower($password) == "user") {
+                $errorMsg[] = "That is not a valid password.";
+                $username_ERROR = true;
             }
 
             if($passwordConf == $errorText) {
@@ -127,15 +137,25 @@
                 $username_ERROR = true;
             }
 
+            if($username == "DELETED" or strtolower($username) == "password" or strtolower($username) == "user") {
+                $errorMsg[] = "That is not a valid account name.";
+                $username_ERROR = true;
+            }
+
             if($password == $errorText) {
                 $errorMsg[] = "Please enter a password.";
                 $password_ERROR = true;
             }
 
-            // Check if Log In is valid
+            if($password == "DELETED" or strtolower($password) == "password" or strtolower($password) == "user") {
+                $errorMsg[] = "That is not a valid password.";
+                $username_ERROR = true;
+            }
+
+            // Check if Login is valid
             if(!($node->tryLoginPHP($username,$password))) {
                 // Login is not valid
-                $errorMsg[] = "Log In is invalid.";
+                $errorMsg[] = "Login is invalid.";
                 $username_ERROR = true;
                 $password_ERROR = true;
             }
@@ -196,7 +216,7 @@
             print '<h3>Account Creation Failed</h3>';
         } else {
             // Login
-            print '<h3>Log In Failed</h3>';
+            print '<h3>Login Failed</h3>';
         }
 
         // Print all errors
@@ -225,7 +245,7 @@
                 </div>
             </div>
 
-            <input type="submit" value="Log In" id="login" name="login">
+            <input type="submit" value="Login" id="login" name="login">
         </form>
     </div>
 

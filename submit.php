@@ -146,8 +146,6 @@
                 array_merge($errorMsg,$response['errors']);
                 $image1_Error = true;
             }
-
-            print_r($response);
         }
 
         if($image2 != "") {

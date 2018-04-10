@@ -83,6 +83,11 @@ class databaseConnector {
         // Pull date
         $date = date('Y-m-d');
 
+        // Ensure barter has a value
+        if($barter == NULL) {
+            $barter = 0;
+        }
+        
         // Build query
         $query = "
             INSERT INTO trading_post.listing (accountID,date,title,description,quantity,price,barter)

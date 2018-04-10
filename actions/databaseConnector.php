@@ -356,5 +356,35 @@ class databaseConnector {
         // Return boolean
         return $allSet;
     }
+
+    public function deleteAccount($accountId,$password) {
+        // Build compare password query
+        $queryA = "
+            SELECT password FROM trading_post.account
+            WHERE accountID = $accountId;
+        ";
+
+        // Execute compare password query
+        $compPass = $this->query($queryA)[0]['password'];
+
+        // Check if retrieved password and old password are the same
+        $allSet = false;
+        if($compPass == $password) {
+            // Toggle
+            $allSet = true;
+
+            // Build reassign password query
+            $queryB = "
+                DELETE FROM trading_post.account
+                WHERE $accountId;
+            ";
+
+            // Execute reassign password query
+            $this->query($queryB);
+        }
+
+        // Return boolean
+        return $allSet;
+    }
 }
 ?>

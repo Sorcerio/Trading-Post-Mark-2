@@ -69,6 +69,15 @@
             // Execute the submission query and return listing id
             return $this->changeUserPassword($accountId,$oldPass,$newPass);
         }
+
+        // Deletes the user's account
+        public function deleteAccountPHP($accountId,$password) {
+            // Connects to the database connector to retrieve query data
+            parent::databaseConnector();
+
+            // Execute the submission query and return listing id
+            return $this->deleteAccount($accountId,$password);
+        }
     }
     
     // Creates the initial object

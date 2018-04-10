@@ -92,7 +92,22 @@
                 // Change Javascript Variables
                 $showDeleteAcc = true;
 
-                // ...
+                // Sanitize Input
+                $password = htmlentities($_POST["password"], ENT_QUOTES, "UTF-8");
+                $confirmation = htmlentities($_POST["textConfirmation"], ENT_QUOTES, "UTF-8");
+
+                // Check for validation
+                if($password == $errorText) {
+                    $errorMsg[] = "Please enter your password.";
+                }
+
+                if($confirmation == $errorText) {
+                    $errorMsg[] = "Please enter the confirmation.";
+                }
+
+                if($confirmation != "Please delete my account") {
+                    $errorMsg[] = "Confirmation is not correct.";
+                }
             }
 
             // Check for errors to attempt actions
@@ -109,7 +124,22 @@
                     }
                 } else {
                     // Delete Account execute
-                    // ...
+                    $isGood = $accountNode->deleteAccountPHP($_SESSION['login'],$password);
+
+                    // Display possible errors
+                    if($isGood) {
+                        // Exit session
+                        session_unset();
+                        session_destroy();
+
+                        // Redirect
+                        ob_start();
+                        header("Location: login.php");
+                        ob_end_flush();
+                        die();
+                    } else {
+                        print '<h1 class="centerText">Account deletion failed. Check your password.</h1>';
+                    }
                 }
             } else {
                 // Errors present

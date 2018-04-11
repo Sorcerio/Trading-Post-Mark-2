@@ -410,5 +410,16 @@ class databaseConnector {
         // Retrun boolean
         return $this->query($query);
     }
+
+    public function getAccountIdByListingId($lisitingId) {
+        // Build query
+        $query = "
+            SELECT accountID FROM trading_post.listing
+            WHERE listingID = $lisitingId;
+        ";
+
+        // Retrun boolean
+        return $this->query($query)[0]['accountID'];
+    }
 }
 ?>

@@ -6,7 +6,7 @@
 <h2 class="optionsTitle">Documents:</h2>
 <ul class="options">
     <li><h3><a href="#disclaimer">Disclaimer</a></h3></li>
-    <li><h3><a href="#termsOfListing">Terms of Listing</a></h3></li>
+    <li><h3><a href="#termsOfListing">Terms of Listings</a></h3></li>
 </ul>
 
 <h1 id="disclaimer">Disclaimer</h1>
@@ -291,10 +291,11 @@ owned and operated by private indiviguals who are not associated with and organi
     <h3><a href="#mainTopNav">Back to Top</a></h3>
 </div>
 
-<h1 id="termsOfListing">Terms of Listing</h1>
+<h1 id="termsOfListing">Terms of Listings</h1>
 <ul>
     <li><p>You understand that information entered into a listing will be displayed publically on this site.</p></li>
     <li><p>You understand that the email associated with your account will be sent to any prospective buyers for the purpose of connecting you and the buyer.</p></li>
+    <li><p>You understand that any email used in relation to contacting a poster will be used to contact said poster.</p></li>
     <li><p>You understand all pictures are stored on our servers once they are uploaded.</p></li>
     <li><p>You udnerstand all information is stored on our servers once it is uploaded.</p></li>
     <li><p>We are not responsible for the legal nature of your listings.</p></li>

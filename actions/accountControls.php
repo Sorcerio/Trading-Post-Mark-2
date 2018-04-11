@@ -69,6 +69,15 @@
             // Execute the submission query and return listing id
             return $this->deleteAccount($accountId,$password);
         }
+
+        // Get's the AccountID associated with a ListingID
+        public function getAccountIdByListingIdPHP($lisitingId) {
+            // Connects to the database connector to retrieve query data
+            parent::databaseConnector();
+
+            // Execute the submission query and return listing id
+            return $this->getAccountIdByListingId($lisitingId);
+        }
     }
     
     // Creates the initial object

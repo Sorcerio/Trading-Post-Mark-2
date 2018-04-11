@@ -16,11 +16,11 @@
 - [x] Listing Page
     - [x] Show images
     - [x] Get listing data
-- [ ] Submit Page
+- [x] Submit Page
     - [x] Take text
     - [x] Take images
     - [x] Link to User Account
-    - [ ] Contact Button
+    - [x] Contact Button
 - [x] Login Page
     - [x] Login form
     - [x] New account form

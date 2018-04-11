@@ -30,6 +30,36 @@
         ob_end_flush();
         die();
     }
+
+    // Check for Post
+    if(isset($_POST['contactSeller'])) {
+        // Print info
+        print '<div class="centerText">';
+        print '<h1>An email to \''.$_POST['sellName'].'\' has been sent on your behalf.</h1>';
+        print '<p>If they choose to respond, you will recieve an email at \''.$_POST['buyEmail'].'\' from them.</p>';
+        print '</div>';
+
+        // Print footer
+        include ("assets/footer.php");
+
+        // Check for response mode
+        if($emailMode) {
+            // Email Mode
+            // Build Message
+            $message = "<h1>".$_POST['sellName'].",<h1><br>";
+            $message .= "<p>".$_POST['buyName']." would like to contact you about your product named '".$data['title']."'.<br>
+                            If you wish to contact them, please send an email to: ".$_POST['buyEmail']."</p>";
+
+            // Send Email
+            mail($_POST['sellEmail'],"Trading Post: Contact Request for ".$data['title'],$message);
+        } else {
+            // Chat Mode
+            // TODO: Implement Chat Features
+        }
+
+        // Exit
+        die();
+    }
 ?>
 
 <h1 class="jumboHeader"><?php if($ready){print $data['title'];} ?></h1>
@@ -108,7 +138,33 @@
         <h3>Description:</h3>
         <p id="product_description"><?php if($ready){print $data['description'];} ?></p>
 
-        <button class="listingButton contactButton" onclick="alert('Button Pressed')">Contact Seller</button>
+        <!-- Contact Buttons -->
+        <button class="listingButton contactButton" onclick="window.location='login.php';" <?php if(isset($_SESSION['login'])){print 'style="display:none;"';} ?>>Login to Contact Seller</button>
+        <form action="<?php print $phpSelf."?id=".$_GET['id']; ?>" method="post" <?php if(!isset($_SESSION['login'])){print 'style="display:none;"';} ?>>
+            <?php
+                // Get appropriate information for the form
+                if(isset($_SESSION['login'])) {
+                    // Include account controls
+                    include 'actions/accountControls.php';
+
+                    // Get Seller's name and email
+                    $sellData = $node->getAccountInfoFromIdPHP($node->getAccountIdByListingIdPHP($_GET['id']));
+                    $sellName = $sellData['name'];
+                    $sellEmail = $sellData['email'];
+
+                    // Get Buyer's name email
+                    $buyData = $node->getAccountInfoFromIdPHP($_SESSION['login']);
+                    $buyName = $buyData['name'];
+                    $buyEmail = $buyData['email'];
+                }
+            ?>
+
+            <input type="hidden" name="sellName" value="<?php print $sellName; ?>">
+            <input type="hidden" name="sellEmail" value="<?php print $sellEmail; ?>">
+            <input type="hidden" name="buyName" value="<?php print $buyName; ?>">
+            <input type="hidden" name="buyEmail" value="<?php print $buyEmail; ?>">
+            <input type="submit" value="Contact Seller" id="contactSeller" name="contactSeller">
+        </form>
     </div>
 </div>
 

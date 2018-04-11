@@ -52,7 +52,11 @@
             // Run link security check
             if(!securityCheck($thisURL)) {
                 // Failed security
-                // TODO: Log to Database infraction w/ user info
+                // Include infraction controls
+                include "actions\infractionControls.php";
+
+                // Log information
+                $infractionNode->logInfractionPHP("Bad From URL on account.php");
 
                 // Inform user they're bad people
                 $out = "<h1>You do not have permission for this page.</h1>";

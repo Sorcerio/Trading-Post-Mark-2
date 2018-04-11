@@ -39,7 +39,11 @@
             $errorMsg[] = "Image ".$id." appears to not be a real image.";
             $imageValid = false;
 
-            // TODO: Log infraction as fake images could be disguised runtimes
+            // Include infraction controls
+            include "actions\infractionControls.php";
+
+            // Log information
+            $infractionNode->logInfractionPHP("Fake Image detected");
         }
 
         // Check if file exists

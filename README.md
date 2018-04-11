@@ -34,4 +34,4 @@
     - [x] Searchs
     - [x] Paginate
     - [ ] Filters (?)
-- [ ] Log infractions
+- [x] Log infractions

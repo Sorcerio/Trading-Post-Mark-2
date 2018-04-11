@@ -18,16 +18,6 @@
     // Security
     $thisURL = $domain.$phpSelf;
 
-    // Check security
-    if(!securityCheck($thisURL)) {
-        // Failed security
-        // TODO: Log to Database infraction w/ user info
-
-        // Inform user they're bad people
-        $out = "<h1>You do not have permission for this page.</h1>";
-        die($out);
-    }
-
     // Variables
     $errorText = "";
     $username = $errorText;
@@ -48,13 +38,17 @@
 
     // Include Account Controls
     include "actions/accountControls.php";
-
+    
     // Check for submit
     if(isset($_POST["login"]) or isset($_POST["createAcc"])) {
         // Check security
         if(!securityCheck($thisURL)) {
             // Failed security
-            // TODO: Log to Database infraction w/ user info
+            // Include infraction controls
+            include "actions\infractionControls.php";
+
+            // Log information
+            $infractionNode->logInfractionPHP("Bad From URL on login.php");
 
             // Inform user they're bad people
             $out = "<h1>You do not have permission for this page.</h1>";

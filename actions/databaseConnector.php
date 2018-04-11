@@ -399,5 +399,16 @@ class databaseConnector {
         // Return boolean
         return $allSet;
     }
+
+    public function logInfraction($ip,$message) {
+        // Build query
+        $query = "
+            INSERT INTO trading_post.infraction (ip,description)
+            VALUES ('$ip','$message');
+        ";
+
+        // Retrun boolean
+        return $this->query($query);
+    }
 }
 ?>

@@ -28,6 +28,13 @@
 		// Set session initiation time
 		$_SESSION['canary'] = time();
 	}
+
+	// Set Contact Mode
+	// True 	= Contact Seller listing button uses the PHP 'mail()' function.
+	//					NOTE: This will only work if PHP on the system has a properly configure mail service.
+	// False 	= Contact Sellet listing button uses built in chat functions to connect users.
+	//					NOTE: The internal chat functions are not yet implemented.
+	$emailMode = true;
 ?>
 
 <!DOCTYPE html>

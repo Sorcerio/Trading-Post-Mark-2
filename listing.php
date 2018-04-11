@@ -11,9 +11,17 @@
 
         // Label data usable
         if(!empty($data)) {
+            // Data is usable
             $ready = true;
         } else {
+            // Data is not usable
             $ready = false;
+
+            // Redirect
+            ob_start();
+            header("Location: 404.php");
+            ob_end_flush();
+            die();
         }
     } else {
         // Redirect to 404

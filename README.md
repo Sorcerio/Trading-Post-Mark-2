@@ -1,5 +1,8 @@
 # Trading Post, Mark 2
+The Trading Post Mark 2 is a Craig's List/Ebay type platform with a host of features. This project orginated in 2015 with the original trading hub. Feeling it was not up to snuff, the Mark 2 version was imagined.
+
 ### Features
+* Modern CSS style
 * Account System using MySQL
 * Listing Submission by Users with Images
 * User Infraction Logging

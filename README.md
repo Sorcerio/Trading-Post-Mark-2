@@ -1,4 +1,11 @@
 # Trading Post, Mark 2
+### Features
+* Account System using MySQL
+* Listing Submission by Users with Images
+* User Infraction Logging
+* Listing Search
+* Paginated Listings
+
 ### UML Map
 [UML is found here](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=SiteStructure.xml#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fmaximombro%2FTrading-Post-Mark-2%2Fmaster%2FSiteStructure.xml)
 
